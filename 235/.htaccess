@@ -1,0 +1,2 @@
+ErrorDocument 404 /leh3291/235/error/error.html
+DirectoryIndex noterror.html

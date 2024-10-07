@@ -1,0 +1,12 @@
+/* Do everyFLEXthing in this file */
+figure {max-width: 650; margin-left: auto; margin-right: auto;  }
+figure img{width: 100%; }
+
+header, main, footer{ width: 90%; margin-left: auto; margin-right: auto;}
+
+
+#tetlist {display: flex; flex-flow: row wrap;}
+.tet {flex: 1 0 10px; border: 1px solid #ff0000; display: block;margin-bottom: 1px; margin-top: 1px; text-align: center; font-optical-sizing:auto;
+    font: weight 800;}
+.tet img {width: 60%;}
+.aliases {text-align: left; margin: 1px;}

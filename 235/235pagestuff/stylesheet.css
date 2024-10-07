@@ -1,0 +1,21 @@
+     
+     
+     /*section elements vvvv*/    
+
+       body {font-family: "Pixelify Sans", system-ui; color:#0A090C; background-color:#F0EDEE }
+        
+       footer { font-family: "Pixelify Sans", system-ui; color:#0A090C; background-color:#90DDF0}
+       /*specific elements vvvv*/
+       p{ margin-left: 100px;} 
+       /*img{size: width= "50" height = "60";}*/ 
+       h1 { border-bottom: 1px solid #07393C;}
+       h2{ margin-left: 10px; }
+       blockquote { background-color: #2C666E; }
+       /*class selectors vvvv*/
+        .blackborder { border: #07393C 2px solid;}
+        .ABitToTheRight{ margin-left: 100px;} 
+        /*img,.medium {size: width= "50" height = "60";}*/
+        
+       /*id selectors vvvv*/
+       #color1 { color: #2C666E;}
+       #color2 { color:#07393C;}

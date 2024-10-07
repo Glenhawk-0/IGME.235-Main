@@ -1,0 +1,5 @@
+/* Do everything in this file */
+h2{border-bottom: 1px solid #ff0000;clear:both;}
+figure img { float:center; width: 40%; margin-left: 30%; }
+#tetlist img {float: left;width: 5rem; border:1px solid #ff0000 ;}
+footer{ clear: left; position: absolute;top:  0em; right: 0em; z-index: -1 ;}
