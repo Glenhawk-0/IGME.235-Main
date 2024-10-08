@@ -1,0 +1,18 @@
+/* grid styling in here */
+
+body { margin: 1rem;}
+
+
+   
+
+
+#wrapper {display:grid ;
+    grid-template-areas:
+   "logo" 
+   "image" 
+   "Header" 
+   "info    blockquote" 
+   "image"; 
+
+   /*gotta add them media type things.. gotta read ];  */
+}
