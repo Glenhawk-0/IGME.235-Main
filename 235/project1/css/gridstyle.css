@@ -14,5 +14,12 @@ body { margin: 1rem;}
    "info    blockquote" 
    "image"; 
 
-   /*gotta add them media type things.. gotta read ];  */
+   /*.. gotta read ];  */
 }
+
+
+h1.game { grid-area: logo; }
+
+#introduction { grid-area: intro; margin: 2rem;}
+#tetgrid { grid-area: playground; }
+footer { grid-area: footer; }
