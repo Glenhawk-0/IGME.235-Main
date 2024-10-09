@@ -26,12 +26,12 @@ body {
   .item-info {
     grid-area: info;
 
-    border: solid brown;
+    border: solid orangered;
   }
   .item-blockquote {
     grid-area: blockquote;
 
-    border: solid pink;
+    border: solid orange;
   }
   .item-image {
     grid-area: image;
