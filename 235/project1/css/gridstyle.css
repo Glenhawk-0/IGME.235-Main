@@ -20,15 +20,23 @@ body {
 /*properties for grid container */
   .item-header {
     grid-area: header;
+
+    border: solid black;
   }
   .item-info {
     grid-area: info;
+
+    border: solid brown;
   }
   .item-blockquote {
     grid-area: blockquote;
+
+    border: solid pink;
   }
   .item-image {
     grid-area: image;
+   
+    border: solid red;
   }
   
   .container {
@@ -37,12 +45,14 @@ body {
     grid-template-rows: repeat(6,1fr);
      grid-template-areas: 
       
-     "header  header  header  header"
+      "header  header  header  header"
       "image   image   image   image"
       "header  header  header  header"
       "info    info    info    blockquote"
       "info    info    info    blockquote"
       "image   image   image   image"; 
+
+      border: dashed grey;
       
   }
 
@@ -63,12 +73,3 @@ body {
     grid-row-start: 6;
     grid-row-end: span 1;
 }
-
-/*
-h1.game { grid-area: logo; }
-
-#introduction { grid-area: intro; margin: 2rem;}
-#tetgrid { grid-area: playground; }
-footer { grid-area: footer; } */
-
-/*from tetris project, im looking at it trying to decipher how it works again, i really need to re read the grid stuff*/
