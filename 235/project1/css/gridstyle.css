@@ -17,9 +17,11 @@ body { margin: 1rem;}
    /*.. gotta read ];  */
 }
 
-
+/*
 h1.game { grid-area: logo; }
 
 #introduction { grid-area: intro; margin: 2rem;}
 #tetgrid { grid-area: playground; }
-footer { grid-area: footer; }
+footer { grid-area: footer; } */ 
+
+/*from tetris project, im looking at it trying to decipher how it works again, i really need to re read the grid stuff*/
