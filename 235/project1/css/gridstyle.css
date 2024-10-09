@@ -1,20 +1,31 @@
 /* grid styling in here */
 
-body { margin: 1rem;}
+body {
+    margin: 1rem;
+}
 
-.backgroundRed{background-color: rgb(168, 2, 2);  }
-.backgroundBlack{background-color: rgb(0, 0, 0);  }
-.backgroundGrey{background-color: rgb(145, 145, 145);  }
+.backgroundRed {
+    background-color: rgb(168, 2, 2);
+}
 
-#wrapper {display:grid ;
+.backgroundBlack {
+    background-color: rgb(0, 0, 0);
+}
+
+.backgroundGrey {
+    background-color: rgb(145, 145, 145);
+}
+
+#wrapper {
+    display: grid;
     grid-template-areas:
-   "logo" 
-   "image" 
-   "Header" 
-   "info    blockquote" 
-   "image"; 
+        "logo"
+        "image"
+        "Header"
+        "info    blockquote"
+        "image";
 
-   /*.. gotta read ];  */
+    /*.. gotta read ];  */
 }
 
 /*
@@ -22,6 +33,6 @@ h1.game { grid-area: logo; }
 
 #introduction { grid-area: intro; margin: 2rem;}
 #tetgrid { grid-area: playground; }
-footer { grid-area: footer; } */ 
+footer { grid-area: footer; } */
 
 /*from tetris project, im looking at it trying to decipher how it works again, i really need to re read the grid stuff*/
