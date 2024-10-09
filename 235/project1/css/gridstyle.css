@@ -33,22 +33,36 @@ body {
   
   .container {
     display: grid;
-    grid-template-columns: 50px 50px 50px 50px;
-    grid-template-rows: auto;
-    grid-template-areas: 
-      "header  header  header  header"
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(6,1fr);
+     grid-template-areas: 
+      
+     "header  header  header  header"
       "image   image   image   image"
       "header  header  header  header"
       "info    info    info    blockquote"
       "info    info    info    blockquote"
-      "image   image   image   image";
+      "image   image   image   image"; 
+      
   }
 
 
 /*properties for grid items*/
 
+.item-header{
+    grid-column-start: header-start;
+    grid-column-end: span ;
+    grid-row-start: header-start;
+    grid-row-end: span 3;
 
+}
 
+.item-image{
+    grid-column-start: image-start;
+    grid-column-end: span1 ;
+    grid-row-start: 6;
+    grid-row-end: span 1;
+}
 
 /*
 h1.game { grid-area: logo; }
