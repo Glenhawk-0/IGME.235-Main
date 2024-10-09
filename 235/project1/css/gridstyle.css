@@ -16,17 +16,39 @@ body {
     background-color: rgb(145, 145, 145);
 }
 
-#wrapper {
-    display: grid;
-    grid-template-areas:
-        "logo"
-        "image"
-        "Header"
-        "info    blockquote"
-        "image";
 
-    /*.. gotta read ];  */
-}
+/*properties for grid container */
+  .item-header {
+    grid-area: header;
+  }
+  .item-info {
+    grid-area: info;
+  }
+  .item-blockquote {
+    grid-area: blockquote;
+  }
+  .item-image {
+    grid-area: image;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: 50px 50px 50px 50px;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "header  header  header  header"
+      "image   image   image   image"
+      "header  header  header  header"
+      "info    info    info    blockquote"
+      "info    info    info    blockquote"
+      "image   image   image   image";
+  }
+
+
+/*properties for grid items*/
+
+
+
 
 /*
 h1.game { grid-area: logo; }
