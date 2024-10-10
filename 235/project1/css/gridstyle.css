@@ -4,6 +4,15 @@ body {
     margin: 1rem;
 }
 
+img{ 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  
+   width: 95%;
+   
+}
+
 .backgroundRed {
     background-color: rgb(168, 2, 2);
 }
@@ -33,32 +42,54 @@ body {
 
     border: solid orange;
   }
+  .item-blockquote2 {
+    grid-area: blockquote2;
+
+    border: solid orange;
+  }
   .item-image {
     grid-area: image;
    
     border: solid red;
   }
+
+  .item-image2 {
+    grid-area: image2;
+    border: solid red;
+  }
+
+
+
+  .item-header2 {
+    grid-area: header2;
+
+    border: solid black;
+  }
   
   .container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: repeat(6,1fr);
+    grid-template-rows: repeat(1,1fr);
      grid-template-areas: 
       
       "header  header  header  header"
       "image   image   image   image"
-      "header  header  header  header"
+      "header2  header2  header2  header2"
       "info    info    info    blockquote"
-      "info    info    info    blockquote"
-      "image   image   image   image"; 
+      "info    info    info    blockquote2"
+      "image2   image2   image2   image2"; 
 
       border: dashed grey;
-      
+      grid-gap: 10px;
+      background-color: rgba(255, 187, 187, 0.164);
+      padding: 10px;
+     
   }
 
 
 /*properties for grid items*/
 
+/*
 .item-header{
     grid-column-start: header-start;
     grid-column-end: span 1;
@@ -73,3 +104,4 @@ body {
     grid-row-start: image-start;
     grid-row-end: span 1;
 }
+    */
