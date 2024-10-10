@@ -61,15 +61,15 @@ body {
 
 .item-header{
     grid-column-start: header-start;
-    grid-column-end: span ;
+    grid-column-end: span 1;
     grid-row-start: header-start;
-    grid-row-end: span 3;
+    grid-row-end: span 1;
 
 }
 
 .item-image{
     grid-column-start: image-start;
-    grid-column-end: span1 ;
-    grid-row-start: 6;
+    grid-column-end: span 1 ;
+    grid-row-start: image-start;
     grid-row-end: span 1;
 }
