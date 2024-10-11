@@ -1,5 +1,19 @@
 /*grid styling   try it again*/
 
+body {
+  margin: 1rem;
+}
+
+img{ 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+ width: 50% ;
+
+ 
+}
+
 
     .item1 { grid-area: header; }
     .item2 { grid-area: img; }
@@ -10,17 +24,17 @@
     .item7 { grid-area: blockquote2; }
     .grid-container {
         grid-template-columns: 1fr 1fr 1fr 1fr ;
-        grid-template-rows: 1fr 3fr 1fr 1fr 1fr 3fr;
-      display: grid;
-      grid-template-areas:
+        grid-template-rows: 1fr 2fr 1fr 1fr 1fr 2fr;
+        display: grid;
+        grid-template-areas:
         'header header header header'
-        'img img img  img'
+        'img    img    img    img'
         'header2 header2 header2 header2'
         'info info info blockquote'
         'info info info blockquote2'
         'img2 img2 img2  img2';
       grid-gap: 10px;
-      background-color: #2196F3;
+      background-color: #ff6200;
       padding: 10px;
     }
     
