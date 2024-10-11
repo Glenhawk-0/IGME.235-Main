@@ -9,25 +9,28 @@ img{
   margin-left: auto;
   margin-right: auto;
 
- width: 50% ;
+ min-width: 20%;
+ max-width: 35%;
 
  
 }
+    
+    .item1 {  clear: left; position: absolute;top:  2em; left: 2em; z-index: 1 ; 
+      background-color: rgba(255, 255, 255, 0.8);text-align: left;}
 
-
-    .item1 { grid-area: header; }
-    .item2 { grid-area: img; }
-    .item3 { grid-area: info; }
-    .item4 { grid-area: blockquote; }
+    /*.item1 { grid-area: header; }*/
+    .item2 { grid-area: img; text-align: center;}
+    .item3 { grid-area: info; text-align: center; }
+    .item4 { grid-area: blockquote; text-align: center;}
     .item5 { grid-area: header2; }
-    .item6 { grid-area: img2; }
-    .item7 { grid-area: blockquote2; }
+    .item6 { grid-area: img2; text-align: center;}
+    .item7 { grid-area: blockquote2; text-align: center; }
     .grid-container {
         grid-template-columns: 1fr 1fr 1fr 1fr ;
-        grid-template-rows: 1fr 2fr 1fr 1fr 1fr 2fr;
+        grid-template-rows:  2fr 80px 1fr 1fr 2fr;
         display: grid;
         grid-template-areas:
-        'header header header header'
+       
         'img    img    img    img'
         'header2 header2 header2 header2'
         'info info info blockquote'
@@ -40,7 +43,9 @@ img{
     
     .grid-container > div {
       background-color: rgba(255, 255, 255, 0.8);
-      text-align: center;
+      /*text-align: center;*/
       padding: 20px 0;
       font-size: 30px;
     }
+
+    
