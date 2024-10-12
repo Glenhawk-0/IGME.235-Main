@@ -2,16 +2,20 @@
 
 body {
   margin: 1rem;
+  font-family: sans-serif;
 }
 
 img{ 
-  display: block;
+  /*display: block;*/ 
   margin-left: auto;
   margin-right: auto;
 
- min-width: 20%;
- max-width: 35%;
+ /*min-width: 20%;*/
+ /*max-width: 35%;*/
 
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
  
 }
     
@@ -20,7 +24,7 @@ img{
 
     /*.item1 { grid-area: header; }*/
     .item2 { grid-area: img; text-align: center;}
-    .item3 { grid-area: info; text-align: center; }
+    .item3 { grid-area: info; text-align: center;  }
     .item4 { grid-area: blockquote; text-align: center;}
     .item5 { grid-area: header2; }
     .item6 { grid-area: img2; text-align: center;}
@@ -39,6 +43,7 @@ img{
       grid-gap: 10px;
       background-color: #ff6200;
       padding: 10px;
+      font-family: sans-serif;
     }
     
     .grid-container > div {
@@ -46,6 +51,9 @@ img{
       /*text-align: center;*/
       padding: 20px 0;
       font-size: 30px;
+      font-family: sans-serif;
     }
 
+
+    /*aditional item settings*/
     
