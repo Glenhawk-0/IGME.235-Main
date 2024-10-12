@@ -11,24 +11,37 @@ img{
   margin-right: auto;
 
  /*min-width: 20%;*/
- /*max-width: 35%;*/
+ max-width: 100%;
 
  width: 100%;
  height: 100%;
  object-fit: cover;
  
 }
+
+.backgroundRed {
+  background-color: rgb(168, 2, 2);
+}
+
+.backgroundBlack {
+  background-color: rgb(0, 0, 0);
+}
+
+.backgroundGrey {
+  background-color: rgb(145, 145, 145);
+}
+
     
-    .item1 {  clear: left; position: absolute;top:  2em; left: 2em; z-index: 1 ; 
-      background-color: rgba(255, 255, 255, 0.8);text-align: left;}
+    .header1 { color: white; clear: left; position: absolute;top:  1.5em; left: 1.34em; z-index: 1 ; 
+      background-color: rgba(68, 0, 0, 0.671);text-align: left;}
 
     /*.item1 { grid-area: header; }*/
-    .item2 { grid-area: img; text-align: center;}
-    .item3 { grid-area: info; text-align: center;  }
-    .item4 { grid-area: blockquote; text-align: center;}
-    .item5 { grid-area: header2; }
-    .item6 { grid-area: img2; text-align: center;}
-    .item7 { grid-area: blockquote2; text-align: center; }
+    .image1 { grid-area: img; text-align: center;}
+    .info1 { grid-area: info; text-align: center;  }
+    .blockquote1 { grid-area: blockquote; text-align: center;}
+    .header2 { grid-area: header2; }
+    .image2 { grid-area: img2; text-align: center;}
+    .blockquote2 { grid-area: blockquote2; text-align: center; }
     .grid-container {
         grid-template-columns: 1fr 1fr 1fr 1fr ;
         grid-template-rows:  2fr 80px 1fr 1fr 2fr;
@@ -40,16 +53,16 @@ img{
         'info info info blockquote'
         'info info info blockquote2'
         'img2 img2 img2  img2';
-      grid-gap: 10px;
-      background-color: #ff6200;
-      padding: 10px;
+      grid-gap: 5px;
+      background-color: rgba(255, 98, 0, 0); /*ive set the color to transparent*/
+      padding: 5px;
       font-family: sans-serif;
     }
     
     .grid-container > div {
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(255, 255, 255, 0); /*ive set the color to transparent*/
       /*text-align: center;*/
-      padding: 20px 0;
+      padding: 5px 0;
       font-size: 30px;
       font-family: sans-serif;
     }
