@@ -54,13 +54,13 @@ img{
         'info info info blockquote2'
         'img2 img2 img2  img2';
       grid-gap: 5px;
-      background-color: rgba(255, 98, 0, 0); /*ive set the color to transparent*/
+      /*background-color: rgba(255, 98, 0, 0); /*ive set the color to transparent*/
       padding: 5px;
       font-family: sans-serif;
     }
     
     .grid-container > div {
-      background-color: rgba(255, 255, 255, 0); /*ive set the color to transparent*/
+      /*background-color: rgba(255, 255, 255, 0); /*ive set the color to transparent*/
       /*text-align: center;*/
       padding: 5px 0;
       font-size: 30px;
