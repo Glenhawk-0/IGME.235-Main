@@ -12,39 +12,62 @@ img{
 
  /*min-width: 20%;*/
 
-
  width: 100%;
  height: 100%;
 
- max-width: 100%;
- max-width: 100%;
+ max-width: 90%;
+ max-width: 90%;
  object-fit: cover;
 /* object-fit:scale-down;*/
 }
 
-.backgroundRed {
-  background-color: rgba(134, 60, 0, 0.534);
+.backgroundRed { background-color: rgba(134, 60, 0, 0.534);}
+
+.backgroundBlack { background-color: rgb(0, 0, 0);}
+
+.backgroundGrey {background-color: rgb(145, 145, 145);}
+
+
+.infosA {
+  text-align: left;
+  margin-left: 75px;
+  background-color: aliceblue;
+
 }
 
-.backgroundBlack {
-  background-color: rgb(0, 0, 0);
+.infosB {
+  text-align: left;
+  margin-right: 75px;
+  background-color: aliceblue;
 }
 
-.backgroundGrey {
-  background-color: rgb(145, 145, 145);
+
+
+.blockquotesA{
+  margin-right: 75px;
+  /*padding-left: 880px;
+  padding-right: 90px;*/
+
 }
+
+.blockquotesB{
+  margin-left: 75px;
+ 
+
+}
+
 
     
-    .header1 { color: white; clear: left; position: absolute;top:  1.67em; left: 1.5em; z-index: 1 ; 
+    .header1 { color: white; clear: left; position: absolute;top:  1.67em; left: 7.5em; z-index: 1 ; 
       background-color: rgba(68, 0, 0, 0.671);text-align: left;}
 
     /*.item1 { grid-area: header; }*/
     .image1 { grid-area: img; text-align: center;}
     .header2 { grid-area: header2; }
 
-    .infoA1 { grid-area: infoA1; text-align: center;  }
-    .infoA2 { grid-area: infoA2; text-align: center;  }
-    .infoA3 { grid-area: infoA3; text-align: center;  }
+    .infoA1 { grid-area: infoA1;  }
+    .infoA2 { grid-area: infoA2;  }
+    .infoA3 { grid-area: infoA3;  }
     
     .blockquote1 { grid-area: blockquote1; text-align: center; }
     .blockquote2 { grid-area: blockquote2; text-align: center; }
@@ -56,9 +79,9 @@ img{
     .blockquote3 { grid-area: blockquote3; text-align: center; }
     .blockquote4 { grid-area: blockquote4; text-align: center; }
 
-    .infoB1 { grid-area: infoB1; text-align: center;  }
-    .infoB2 { grid-area: infoB2; text-align: center;  }
-    .infoB3 { grid-area: infoB3; text-align: center;  }
+    .infoB1 { grid-area: infoB1;  }
+    .infoB2 { grid-area: infoB2;  }
+    .infoB3 { grid-area: infoB3;   }
 
     .image3 { grid-area: img3; text-align: center; }
 
@@ -86,6 +109,7 @@ img{
       font-family: sans-serif;
       /*margin: 1rem;*/
     }
+    
     
     .grid-container > div {
       /*background-color: rgba(255, 255, 255, 0); /*ive set the color to transparent*/
