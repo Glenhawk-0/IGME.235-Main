@@ -11,12 +11,15 @@ img{
   margin-right: auto;
 
  /*min-width: 20%;*/
- max-width: 100%;
+
 
  width: 100%;
  height: 100%;
- /*object-fit: cover;*/
- object-fit:scale-down;
+
+ max-width: 100%;
+ max-width: 100%;
+ object-fit: cover;
+/* object-fit:scale-down;*/
 }
 
 .backgroundRed {
@@ -32,7 +35,7 @@ img{
 }
 
     
-    .header1 { color: white; clear: left; position: absolute;top:  1.5em; left: 1.34em; z-index: 1 ; 
+    .header1 { color: white; clear: left; position: absolute;top:  1.67em; left: 1.5em; z-index: 1 ; 
       background-color: rgba(68, 0, 0, 0.671);text-align: left;}
 
     /*.item1 { grid-area: header; }*/
@@ -47,6 +50,8 @@ img{
     .blockquote2 { grid-area: blockquote2; text-align: center; }
 
     .image2 { grid-area: img2; text-align: center;}
+
+    .header3 { grid-area: header3; }
     
     .blockquote3 { grid-area: blockquote3; text-align: center; }
     .blockquote4 { grid-area: blockquote4; text-align: center; }
@@ -59,7 +64,8 @@ img{
 
     .grid-container {
         grid-template-columns: 1fr 1fr 1fr 1fr ;
-        grid-template-rows:  2fr 50px 250px 250px 2fr 250px 250px 2fr;
+        grid-template-rows:  800px 50px 250px 250px 800px 50px 250px 250px 800px;
+        /*                   image head block block image head block block image*/
         display: grid;
         grid-template-areas:
        
@@ -68,6 +74,7 @@ img{
         'infoA1 infoA2 infoA3 blockquote1'
         'infoA1 infoA2 infoA3 blockquote2'
         'img2 img2 img2  img2'
+        'header3 header3 header3 header3'
         'blockquote3 infoB1 infoB2 infoB3 '
         'blockquote4 infoB1 infoB2 infoB3 ' 
         'img3 img3 img3 img3';
