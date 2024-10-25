@@ -43,21 +43,23 @@ img{
     .infoA2 { grid-area: infoA2; text-align: center;  }
     .infoA3 { grid-area: infoA3; text-align: center;  }
     
-    .blockquote1 { grid-area: blockquote1; text-align: center;}
+    .blockquote1 { grid-area: blockquote1; text-align: center; }
     .blockquote2 { grid-area: blockquote2; text-align: center; }
 
     .image2 { grid-area: img2; text-align: center;}
     
+    .blockquote3 { grid-area: blockquote3; text-align: center; }
+    .blockquote4 { grid-area: blockquote4; text-align: center; }
+
     .infoB1 { grid-area: infoB1; text-align: center;  }
     .infoB2 { grid-area: infoB2; text-align: center;  }
     .infoB3 { grid-area: infoB3; text-align: center;  }
 
-    .blockquote3 { grid-area: blockquote3; text-align: center;}
-    .blockquote4 { grid-area: blockquote4; text-align: center; }
+    .image3 { grid-area: img3; text-align: center; }
 
     .grid-container {
         grid-template-columns: 1fr 1fr 1fr 1fr ;
-        grid-template-rows:  2fr 50px 250px 250px 2fr 250px 250px;
+        grid-template-rows:  2fr 50px 250px 250px 2fr 250px 250px 2fr;
         display: grid;
         grid-template-areas:
        
@@ -67,7 +69,10 @@ img{
         'infoA1 infoA2 infoA3 blockquote2'
         'img2 img2 img2  img2'
         'blockquote3 infoB1 infoB2 infoB3 '
-        'blockquote4 infoB1 infoB2 infoB3 ' ;
+        'blockquote4 infoB1 infoB2 infoB3 ' 
+        'img3 img3 img3 img3';
+
+/*--------------------------------------------*/
       grid-gap: 5px;
       /*background-color: rgba(255, 98, 0, 0); /*ive set the color to transparent*/
       padding: 5px;
