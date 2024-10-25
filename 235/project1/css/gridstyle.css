@@ -15,9 +15,11 @@ img{
  width: 100%;
  height: 100%;
 
- max-width: 90%;
- max-width: 90%;
- object-fit: cover;
+/* min-width: 90%;
+ min-height: 90%;/**/
+ /*max-width: 90%;
+ max-width: 90%;/**/
+ object-fit: fill ;
 /* object-fit:scale-down;*/
 }
 
@@ -32,6 +34,9 @@ img{
   text-align: left;
   margin-left: 75px;
   background-color: aliceblue;
+  overflow-wrap: break-word;
+  padding-right: 20px;
+  
 
 }
 
@@ -39,6 +44,8 @@ img{
   text-align: left;
   margin-right: 75px;
   background-color: aliceblue;
+  overflow-wrap: break-word;
+  padding-left: 30px;
 }
 
 
@@ -62,8 +69,9 @@ img{
       background-color: rgba(68, 0, 0, 0.671);text-align: left;}
 
     /*.item1 { grid-area: header; }*/
-    .image1 { grid-area: img; text-align: center;}
-    .header2 { grid-area: header2; }
+    .image1 { grid-area: img; text-align: center; padding-inline:75px ; /*background-color: rgb(255, 0, 0);/**/}
+    
+    .header2 { grid-area: header2; margin-left: 75px;}
 
     .infoA1 { grid-area: infoA1;  }
     .infoA2 { grid-area: infoA2;  }
@@ -72,9 +80,9 @@ img{
     .blockquote1 { grid-area: blockquote1; text-align: center; }
     .blockquote2 { grid-area: blockquote2; text-align: center; }
 
-    .image2 { grid-area: img2; text-align: center;}
+    .image2 { grid-area: img2; text-align: center; padding-inline:75px }
 
-    .header3 { grid-area: header3; }
+    .header3 { grid-area: header3; margin-left: 75px; }
     
     .blockquote3 { grid-area: blockquote3; text-align: center; }
     .blockquote4 { grid-area: blockquote4; text-align: center; }
@@ -83,12 +91,14 @@ img{
     .infoB2 { grid-area: infoB2;  }
     .infoB3 { grid-area: infoB3;   }
 
-    .image3 { grid-area: img3; text-align: center; }
+    .image3 { grid-area: img3; text-align: center; padding-inline:75px }
+
+    .footer {grid-area: footer; margin-left: 75px;}
 
     .grid-container {
         grid-template-columns: 1fr 1fr 1fr 1fr ;
-        grid-template-rows:  800px 50px 250px 250px 800px 50px 250px 250px 800px;
-        /*                   image head block block image head block block image*/
+        grid-template-rows:  800px 50px 250px 250px 800px 50px 250px 250px 800px 50px ;
+        /*                   image head block block image head block block image foot */
         display: grid;
         grid-template-areas:
        
@@ -100,11 +110,13 @@ img{
         'header3 header3 header3 header3'
         'blockquote3 infoB1 infoB2 infoB3 '
         'blockquote4 infoB1 infoB2 infoB3 ' 
-        'img3 img3 img3 img3';
+        'img3 img3 img3 img3'
+        'footer footer footer footer'
+        ;
 
 /*--------------------------------------------*/
       grid-gap: 5px;
-      /*background-color: rgba(255, 98, 0, 0); /*ive set the color to transparent*/
+      /*background-color: rgba(255, 98, 0, 0); /*ive set the color to transparent/**/
       padding: 5px;
       font-family: sans-serif;
       /*margin: 1rem;*/
@@ -112,10 +124,10 @@ img{
     
     
     .grid-container > div {
-      /*background-color: rgba(255, 255, 255, 0); /*ive set the color to transparent*/
+      background-color: rgb(255, 0, 0); /*ive set the color to transparent*/
       /*text-align: center;*/
-      padding: 5px 0;
-      font-size: 30px;
+  
+      font-size: 25px;
       font-family: sans-serif;
     }
 
