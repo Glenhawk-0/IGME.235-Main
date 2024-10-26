@@ -6,6 +6,7 @@ img{
   /*display: block;*/ 
   margin-left: auto;
   margin-right: auto;
+ 
 
  /*min-width: 20%;*/
 
@@ -30,6 +31,17 @@ img{
   /*background-color: rgb(199, 199, 199);/**/
   overflow-wrap: break-word;
   padding-right: 20px;
+  
+  
+  @media  screen and (max-width: 850px) {
+  text-align: left;
+  margin-inline: 75px;
+  /*background-color: rgb(199, 199, 199);/**/
+  overflow-wrap: break-word;
+  padding-bottom: 40px;
+  padding-right: 0px ;
+  }
+
 }
 
 .infosB {
@@ -38,10 +50,26 @@ img{
   /*background-color: rgb(199, 199, 199);/**/
   overflow-wrap: break-word;
   padding-left: 30px;
+  
+  @media  screen and (max-width: 850px) {
+    text-align: left;
+  margin-inline: 75px;
+  /*background-color: rgb(199, 199, 199);/**/
+  overflow-wrap:break-word;
+  padding-bottom: 40px;
+  padding-left: 0px ;
+  }
+
 }
 
-.blockquotesA{ margin-right: 75px;}
-.blockquotesB{ margin-left: 75px;}
+.blockquotesA{ margin-right: 75px;
+  @media  screen and (max-width: 850px) {
+  margin-inline: 75px; padding: 1px;}
+  }
+.blockquotesB{ margin-left: 75px;
+  @media  screen and (max-width: 850px) {
+    margin-inline: 75px; padding: 1px;}
+    }
 
 /*____________________________________________________________________________________________________________________*/
     
@@ -67,6 +95,8 @@ img{
     .infoB1 { grid-area: infoB1;  }
     .infoB2 { grid-area: infoB2;  }
     .infoB3 { grid-area: infoB3;  }
+    .infoA  { grid-area: infoA;}
+    .infoB  { grid-area: infoB;}
     
     #footer {grid-area: footer;}
 
@@ -81,14 +111,20 @@ img{
     
     #header2 { grid-area: header2; margin-left: 75px;}
 
-    .infoA1 { grid-area: infoA1;  }
-    .infoA2 { grid-area: infoA2;  }
-    .infoA3 { grid-area: infoA3;  }
+      
+    @media only screen and (min-width: 850px) {
+      .infoA {
+        display: none;
+      }
+      .infoB {
+        display: none;
+      }
+    }
     
-    .blockquote1 { grid-area: blockquote1; text-align: center; }
+    .blockquote1 { grid-area: blockquote1; text-align: center;  }
     .blockquote2 { grid-area: blockquote2; text-align: center; }
 
-    .image2 { grid-area: img2; text-align: center; padding-inline:75px }
+    .image2 { grid-area: img2; text-align: center; padding-inline:75px; }
 
     #header3 { grid-area: header3; margin-left: 75px; }
     
@@ -99,7 +135,7 @@ img{
     .infoB2 { grid-area: infoB2;  }
     .infoB3 { grid-area: infoB3;   }
 
-    .image3 { grid-area: img3; text-align: center; padding-inline:75px }
+    .image3 { grid-area: img3; text-align: center; padding-inline:75px;  }
 
     #footer {grid-area: footer; margin-left: 75px;}
 
@@ -122,12 +158,18 @@ img{
         'blockquote4 infoB1 infoB2 infoB3 ' 
         'img3 img3 img3 img3'
         'footer footer footer footer';
+ 
+        
 
       grid-gap: 5px;
       /*background-color: rgba(255, 98, 0, 0); /*ive set the color to transparent/**/
       padding: 5px;
       font-family: sans-serif;
       /*margin: 1rem;*/
+
+     
+      
+
     }
     
     .grid-container > div {
@@ -138,7 +180,52 @@ img{
     }
 
     /*Mobile View__________________________________________________________________*/
-   
+    @media  screen and (max-width: 850px) {
+     .infoA1 {
+        display: none;
+      }
+      .infoA2 {
+        display: none;
+      }
+      .infoA3 {
+        display: none;
+      }
+      .infoB1 {
+        display: none;
+      }
+      .infoB2 {
+        display: none;
+      }
+      .infoB3 {
+        display: none;
+      }/**/
+
+    }
+    
+
+    @media only screen and (max-width: 850px ){
+      
+
+      .grid-container{
+      /*color: red;*/
+    grid-template-areas:
+    'menu menu menu menu    '
+    'img    img    img    img'
+    'header2 header2 header2 header2'
+    'infoA infoA infoA infoA '
+    'blockquote1 blockquote1  blockquote2 blockquote2' 
+    'img2 img2 img2  img2'
+    'header3 header3 header3 header3'
+    'infoB infoB infoB infoB '
+    'blockquote3 blockquote3  blockquote4 blockquote4' 
+    'img3 img3 img3 img3'
+    'footer footer footer footer';
+
+    grid-template-columns: 1fr 1fr 1fr 1fr ; /*width*/
+    grid-template-rows: 50px 500px 50px 500px 300px 500px 50px 500px 300px 500px 100px ;  /*height*/
+    /*                  menu image head info  block image head info  block image foot */
+}
+    }/*end media quert and mobile stuff*/
    
    
     /*End media query stuff___________________*/
