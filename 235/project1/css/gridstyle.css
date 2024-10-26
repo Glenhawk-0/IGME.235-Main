@@ -1,9 +1,6 @@
 /*grid styling   try it again*/
 
-body {
-  margin: 1rem;
-  font-family: sans-serif;
-}
+body {margin: 1rem; font-family: sans-serif;}
 
 img{ 
   /*display: block;*/ 
@@ -24,54 +21,65 @@ img{
 }
 
 .backgroundRed { background-color: rgba(134, 60, 0, 0.534);}
-
 .backgroundBlack { background-color: rgb(0, 0, 0);}
-
 .backgroundGrey {background-color: rgb(145, 145, 145);}
-
 
 .infosA {
   text-align: left;
   margin-left: 75px;
-  background-color: aliceblue;
+  /*background-color: rgb(199, 199, 199);/**/
   overflow-wrap: break-word;
   padding-right: 20px;
-  
-
 }
 
 .infosB {
   text-align: left;
   margin-right: 75px;
-  background-color: aliceblue;
+  /*background-color: rgb(199, 199, 199);/**/
   overflow-wrap: break-word;
   padding-left: 30px;
 }
 
+.blockquotesA{ margin-right: 75px;}
+.blockquotesB{ margin-left: 75px;}
 
-
-.blockquotesA{
-  margin-right: 75px;
-  /*padding-left: 880px;
-  padding-right: 90px;*/
-
-}
-
-.blockquotesB{
-  margin-left: 75px;
- 
-
-}
-
-
+/*____________________________________________________________________________________________________________________*/
     
-    .header1 { color: white; clear: left; position: absolute;top:  1.67em; left: 7.5em; z-index: 1 ; 
+   /* .header1 { color: white; clear: left; position: absolute;top:  75px; left: 95px ; z-index: 1 ; 
+      background-color: rgba(68, 0, 0, 0.671);text-align: left;}*/
+
+    /*.item1 { grid-area: header; }*/
+    #header2 { grid-area: header2;}
+    #header3 { grid-area: header3;}
+
+    .blockquote1 { grid-area: blockquote1;}
+    .blockquote2 { grid-area: blockquote2;}
+    .blockquote3 { grid-area: blockquote3;}
+    .blockquote4 { grid-area: blockquote4;}
+   
+    .image1 { grid-area: img;}
+    .image2 { grid-area: img2;}
+    .image3 { grid-area: img3;}
+
+    .infoA1 { grid-area: infoA1;  }
+    .infoA2 { grid-area: infoA2;  }
+    .infoA3 { grid-area: infoA3;  }
+    .infoB1 { grid-area: infoB1;  }
+    .infoB2 { grid-area: infoB2;  }
+    .infoB3 { grid-area: infoB3;  }
+    
+    #footer {grid-area: footer;}
+
+    /*prepare stuff for media query, seperate declaration and functions___________*/
+    
+    /*normal view_____________________________________________________*/
+    .header1 { color: white; clear: left; position: absolute;top:  75px; left: 95px ; z-index: 1 ; 
       background-color: rgba(68, 0, 0, 0.671);text-align: left;}
 
     /*.item1 { grid-area: header; }*/
     .image1 { grid-area: img; text-align: center; padding-inline:75px ; /*background-color: rgb(255, 0, 0);/**/}
     
-    .header2 { grid-area: header2; margin-left: 75px;}
+    #header2 { grid-area: header2; margin-left: 75px;}
 
     .infoA1 { grid-area: infoA1;  }
     .infoA2 { grid-area: infoA2;  }
@@ -82,7 +90,7 @@ img{
 
     .image2 { grid-area: img2; text-align: center; padding-inline:75px }
 
-    .header3 { grid-area: header3; margin-left: 75px; }
+    #header3 { grid-area: header3; margin-left: 75px; }
     
     .blockquote3 { grid-area: blockquote3; text-align: center; }
     .blockquote4 { grid-area: blockquote4; text-align: center; }
@@ -93,15 +101,17 @@ img{
 
     .image3 { grid-area: img3; text-align: center; padding-inline:75px }
 
-    .footer {grid-area: footer; margin-left: 75px;}
+    #footer {grid-area: footer; margin-left: 75px;}
 
     .grid-container {
+
+
         grid-template-columns: 1fr 1fr 1fr 1fr ;
-        grid-template-rows:  800px 50px 250px 250px 800px 50px 250px 250px 800px 50px ;
-        /*                   image head block block image head block block image foot */
+        grid-template-rows: 50px 800px 50px 250px 250px 800px 50px 250px 250px 800px 50px ;
+        /*                  menu image head block block image head block block image foot */
         display: grid;
         grid-template-areas:
-       
+        ' menu menu menu menu    '
         'img    img    img    img'
         'header2 header2 header2 header2'
         'infoA1 infoA2 infoA3 blockquote1'
@@ -111,10 +121,8 @@ img{
         'blockquote3 infoB1 infoB2 infoB3 '
         'blockquote4 infoB1 infoB2 infoB3 ' 
         'img3 img3 img3 img3'
-        'footer footer footer footer'
-        ;
+        'footer footer footer footer';
 
-/*--------------------------------------------*/
       grid-gap: 5px;
       /*background-color: rgba(255, 98, 0, 0); /*ive set the color to transparent/**/
       padding: 5px;
@@ -122,20 +130,84 @@ img{
       /*margin: 1rem;*/
     }
     
-    
     .grid-container > div {
-      background-color: rgb(255, 0, 0); /*ive set the color to transparent*/
+      /*background-color: rgb(255, 0, 0); /*ive set the color to transparent*/
       /*text-align: center;*/
-  
       font-size: 25px;
       font-family: sans-serif;
     }
 
+    /*Mobile View__________________________________________________________________*/
+   
+   
+   
+    /*End media query stuff___________________*/
 
-    /*aditional item settings*/
-    
+  /*_______________menu stuff__________________*/
+    ul.menu { grid-area: menu; 
+  list-style: none;
+  margin-right: 75px;/**/
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap; 
+ justify-content: right;}
 
-    /*
+
+  .menu a {
+  transition: transform 0.1s ease-in, background-color 0.5s linear;
+  display: block;
+  background: gray;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.menu li {
+  width: 25%;
+}
+
+/*
+@media screen and (max-width: 550px) {
+	.menu li {
+		width: 100%;
+	}
+}*/
+
+.menu a:hover {
+  transform:scale(1.1); 
+	background: red;
+	color: rgb(0, 0, 0);
+}
+
+ul.menu ul li {
+  width:100%;
+}
+ul.menu ul {
+  display:none;
+}
+ul.menu li:hover ul {
+  display:flex;
+}
+
+.menu .submenu li>a:hover {
+  background:red;
+  color:rgb(0, 0, 0);
+}
+.menu .submenu>a:after {
+  content: "+";
+  padding-left:5px;
+}
+/*End of Menu Stuff_____________________________ */
+
+
+
+
+
+
+
+   /*
     rules
     https://github.com/dccircuit/IGME-235-Spring-2024/blob/main/projects/project-1.md
-    */
+    
+    
+    END */
