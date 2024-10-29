@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Web Apps-5</title>
+	<style>
+		body{
+			font-family:sans-serif;
+		}
+		#colorform{
+			background-color:#dfecdf;
+			color: #111;
+			padding:1em;width:400px;
+		}
+		#colorform p#info{
+			background-color:white;
+			color: black;
+			width:300px;
+			height:100px;
+			padding:.5em;
+		}
+		
+		#colorform legend{ 
+			font-weight:bold;
+			font-size:1.2em;
+		}
+	</style>
+</head>
+<body>
+
+<div id="colorform">
+	<legend>Choose your favorite color!</legend>
+	<p><input type="radio" name="colorGroup" id="colorGroupRed" value="red" /> Red</p>
+	<p><input type="radio" name="colorGroup" id="colorGroupGreen" value="green" /> Green</p>
+	<p><input type="radio" name="colorGroup" id="colorGroupBlue" value="blue" /> Blue</p>
+	<p><button id="colorButton" type="button">Submit</button></p>
+	<p id="info"></p>
+</div>
+
+<script>
+/* Write your code here! */
+"use strict";
+let p = document.querySelectorAll("p");
+let choosenValue = "purple?"
+
+p[0].onclick = function(e){
+    //Red
+    p[4].innerText = "you have selected " + e.target.value +"!"
+    choosenValue = e.target.value
+}
+p[1].onclick = function(e){
+    //Green
+    p[4].innerText = "you have selected " + e.target.value +"!"
+    choosenValue = e.target.value
+}
+p[2].onclick = function(e){
+    //Blue
+    p[4].innerText = "you have selected " + e.target.value +"!"
+    choosenValue = e.target.value
+}
+
+
+
+p[3].onclick = function(e){
+    //Submit
+    p[4].innerText = "Your FINAL CHOICE is " + choosenValue +"!"
+}
+
+
+/*
+im getting very upset, ive had to skim through all the web app chapters because i was busy with 
+the project, now alongside these excercises and other homework in this class, i have 
+over 12 assignments to do and im not understanding what im doing for really any of these excecises so far... 
+but it looks like were transitioning straight into the next project now after these... 
+im not really gonna actually learn any of this am i?
+of course. "go back and read the material" but as was said earlier , in this class alone 
+i now have over 12 assignments. unfourtunatly i have a few other classes that also demand my attention
+that i am currently skimping out on FOR THIS CLASS.. i dont blame you professor travis. their is 
+clearly not enough time in class to go though all of these in the intended way, that being in class
+excercises. but its just frusterating going through all not knowing what the hell im doing for any of them.
+
+i guess in conclusion.. im aware i did this in an unintended way. but i cant afford to sit here 
+and figure it out, i risk my grades for other classes droping. i have to move on as fast as i can.
+i apologize
+-Lennon Hare
+ */
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Web Apps-4-HW</title>
+	<style>
+		body{border:1px solid gray;}
+	</style>
+</head>
+<body>
+<h1>My Favorites</h1>
+<h2>My Favorite Colors</h2>
+
+<ol id="colorsList">
+	
+</ol>
+
+<h2>My Favorite Foods</h2>
+
+<ol id="foodsList">
+	
+</ol>
+
+
+
+<script>
+
+"use strict";
+let colors = ["red","green","blue","purple","pink"];
+let foods = ["Burrito" , "burger" , "apple" , "Battery acid"]; // add some foods
+
+let orderedList = document.querySelectorAll("ol");
+
+createList(0,colors) 
+createList(1,foods)
+
+
+function createList(listElement,array){
+  // you write the rest
+  console.log("function performed")
+  for(const element of array){
+    let textNode = document.createTextNode(element);
+    let listItem = document.createElement("li");
+   listItem.appendChild(textNode)
+    console.log ("listitem " + listItem);
+    orderedList[listElement].appendChild(listItem);
+}
+console.log("function completed")
+}
+
+
+
+</script>
+</body>
+</html>

@@ -38,7 +38,18 @@
         //"<a href=\"http://www.nuforc.org/\" target=\"_bl'ank\">http://www.nuforc.org/</a>"
         let link = document.createElement("a")
         link.href = "http://www.nuforc.org/"
-    ps[0].innerText = "Report your UFO sightings here: " + link.href + " \n (been looking. cant fine concrete or rather an intuitive way to add a link that involves the code were using. >:|)" ;
-	</script>
+    ps[0].innerText = "Report your UFO sightings here: " + link.href  ;
+    ps[0].style.color = 'green';
+    ps[0].style.fontWeight = 'bold' ;
+    ps[0].style.fontSize = '2em' ;
+    ps[0].style.textTransform = 'uppercase' ;
+    ps[0].style.textShadow = '3px 2px #A44' ;
+
+    ps[1].innerText = "" ;
+
+    const currentDate = new Date();
+    ps[2].innerText = currentDate + " Lennon Hare" ;
+
+  </script>
 </body>
 </html>
