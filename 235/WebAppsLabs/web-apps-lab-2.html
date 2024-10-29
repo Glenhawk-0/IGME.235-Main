@@ -34,6 +34,11 @@
     body.style.font = "sans-serif"  ;
         body.style.border = "2px solid black";
 
+        const ps = document.querySelectorAll("p");
+        //"<a href=\"http://www.nuforc.org/\" target=\"_bl'ank\">http://www.nuforc.org/</a>"
+        let link = document.createElement("a")
+        link.href = "http://www.nuforc.org/"
+    ps[0].innerText = "Report your UFO sightings here: " + link.href + " \n (been looking. cant fine concrete or rather an intuitive way to add a link that involves the code were using. >:|)" ;
 	</script>
 </body>
 </html>
