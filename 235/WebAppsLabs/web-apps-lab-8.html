@@ -26,7 +26,7 @@ let cars = [
 */
 let classicCars = cars.filter(car => car.year < 1971 );
 
-console.log("classic cars" + classicCars);
+console.log("classic cars: " + classicCars);
 
 
 
@@ -39,6 +39,11 @@ console.log("classic cars" + classicCars);
  
 */
 
+let sortedByYear = cars.sort((a, b) => b.year - a.year);
+
+console.log("sortedByYear: " + sortedByYear);
+
+
 
 /*
  3 - Create a new array named 'newerYearsOnly' that contains only the .year property 
@@ -46,6 +51,8 @@ console.log("classic cars" + classicCars);
  Use Array.map() on the cars array:
  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
  
+
+
  This will give you a few undefined values. Use Array.filter() to get rid of these 
  undefined values so that newerYearsOnly contains only years (Numbers)
  
@@ -57,7 +64,20 @@ console.log("classic cars" + classicCars);
  or as a "one-liner" by chaining the method calls.
 */
 
-debugger;
+
+
+
+let newerYearsOnly = cars.map(car => {
+  if ((car.year) > 2009) {
+    
+	console.log("num: " + car);
+	return car;
+  }
+});
+console.log("newerYearsOnly: " + newerYearsOnly);//th[is works, good.
+
+//debugger;
+
 </script>
 </body>
 </html>
