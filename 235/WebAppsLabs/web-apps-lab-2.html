@@ -38,7 +38,11 @@
         //"<a href=\"http://www.nuforc.org/\" target=\"_bl'ank\">http://www.nuforc.org/</a>"
         let link = document.createElement("a")
         link.href = "http://www.nuforc.org/"
-    ps[0].innerText = "Report your UFO sightings here: " + link.href  ;
+        link.innerHTML = "http://www.nuforc.org/"
+
+        
+       // ps[0].appendChild = "Report your UFO sightings here: " + link  ;
+    ps[0].innerText = "Report your UFO sightings here: " + link  ;
     ps[0].style.color = 'green';
     ps[0].style.fontWeight = 'bold' ;
     ps[0].style.fontSize = '2em' ;

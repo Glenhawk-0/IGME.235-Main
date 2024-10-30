@@ -40,7 +40,7 @@ let orderedList = document.querySelectorAll("ol");
     let textNode = document.createTextNode(colors[i]);
     let listItem = document.createElement("li");
    listItem.appendChild(textNode)
-    console.log ("listitem " + listItem);
+    
     orderedList[0].appendChild(listItem);
 }
 
@@ -49,7 +49,7 @@ for(const element of foods){
     let textNode = document.createTextNode(element);
     let listItem = document.createElement("li");
    listItem.appendChild(textNode)
-    console.log ("listitem " + listItem);
+
     orderedList[1].appendChild(listItem);
 }
 
@@ -64,11 +64,18 @@ let links = {
 	}
 
 
-    for(let i = 0; i < 3; i++){
-    let textNode = document.createTextNode("NOPE");
+
+for (const [key, value] of Object.entries(links)) {
+  console.log("key? " + key +"\n value? " + value);
+   
+  let theLink = document.createElement("a");
     let listItem = document.createElement("li");
-   listItem.appendChild(textNode)
-    console.log ("listitem " + listItem);
+
+    theLink.innerHTML = key;
+    theLink.href = value;
+
+   listItem.appendChild(theLink)
+
     orderedList[2].appendChild(listItem);
 }
 

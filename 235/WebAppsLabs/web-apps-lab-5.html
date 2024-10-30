@@ -41,6 +41,7 @@
 /* Write your code here! */
 "use strict";
 let p = document.querySelectorAll("p");
+let leg = document.querySelector("legend");
 let choosenValue = "purple?"
 
 p[0].onclick = function(e){
@@ -63,7 +64,8 @@ p[2].onclick = function(e){
 
 p[3].onclick = function(e){
     //Submit
-    p[4].innerText = "Your FINAL CHOICE is " + choosenValue +"!"
+    p[4].innerText = "Your FINAL CHOICE is " + choosenValue +"!";
+	leg.style.color = choosenValue ;
 }
 
 
