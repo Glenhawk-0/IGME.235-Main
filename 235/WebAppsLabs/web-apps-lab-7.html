@@ -22,7 +22,8 @@
          */
         window.onload = function () {
             makeSampleMonsters();
-            showMonsters();
+            showMonsters("#goombas");
+            showMonsters("#boos");
         }
 
         /**
@@ -38,14 +39,22 @@
             monsters.push(monster);
             monster = makeGoomba("Alice", 40, 150, 200);
             monsters.push(monster);
+
+            monster = makeBoo("dennins", 20, 30, 100);
+            monsters.push(monster);
+            monster = makeBoo("will", 30, 100, 150);
+            monsters.push(monster);
+            monster = makeBoo("henry", 40, 150, 200);
+            monsters.push(monster);
         }
 
         /**
          * Function that shows our monsters (just Goombas for now)
          * 
          */
-        function showMonsters() {
+        function showMonsters(gate) {
             let goombaList = document.querySelector("#goombas");
+            let booList = document.querySelector("#boos");
 
             for (let i = 0; i < monsters.length; i++) {
                 let liStr = "";
@@ -54,10 +63,19 @@
                 for (let key in monsters[i]) {
                     if (typeof monsters[i][key] !== "function") {
                         liStr += `<b>${key}:</b> ${monsters[i][key]}<br />`;
+
                     }
                 }
                 li.innerHTML = liStr;
+               
+                if(monsters[i].type == "Goomba" && gate ==  "#goombas"){
                 goombaList.appendChild(li);
+                }
+                
+                if(monsters[i].type == "Boo" && gate == "#boos"){
+                booList.appendChild(li);
+                }
+
             }
         }
 
@@ -91,10 +109,29 @@
                 goomba.hp -= dmgVal;
             }
             goomba.powerUp = powerUp;
+            goomba.type = "Goomba"
 
             Object.seal(goomba);
             return goomba;
         }
+
+
+        function makeBoo(name, hp, speed, score) {
+            let Boo = createBaseMonster();
+            Boo.name = name;
+            Boo.hp = hp;
+            Boo.speed = speed;
+            Boo.score = score;
+            Boo.takeDamage = function (dmgVal) {
+                Boo.hp -= dmgVal;
+            }
+            Boo.powerUp = powerUp;
+            Boo.type = "Boo"
+
+            Object.seal(Boo);
+            return Boo;
+        }
+
 
         /**
          * Function that can be used inside a monster object.
@@ -107,14 +144,22 @@
         };
 
     </script>
+
 </head>
 
 <body>
     <div id="lineUp">
+
         <h1>Goombas</h1>
         <ul id="goombas">
         </ul>
+
+        <h1>Boos</h1>
+        <ul id ="boos">
+        </ul>
+
     </div>
 </body>
+
 
 </html>
