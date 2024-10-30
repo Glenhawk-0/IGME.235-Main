@@ -33,14 +33,16 @@ const colorSelect = document.querySelector("#colorSelect");
 const prefix = "Leh3291"; // change 'abc1234' to your banjo id
 const nameKey = prefix + "name"
 const colorKey = prefix + "color";
-/*
+
 const backc = document.querySelector("body");
-LENNNNOON________________________________________________________________^^^^^^^^^^^^^vvvvvvvvvvvvv
-backc.style.backgroundColor = localStorage.getItem(colorKey) ;
-*/
+//*LENNNNOON________________________________________________________________^^^^^^^^^^^^^vvvvvvvvvvvvv**//
+//backc.style.backgroundColor =  localStorage.getItem(colorKey) ;
+
 // grab the stored data, will return `null` if the user has never been to this page
 const storedName = localStorage.getItem(nameKey);
 const storedColor = localStorage.getItem(colorKey);
+
+backc.style.backgroundColor =  storedColor
 
 // if we find a previously set name value, display it
 if (storedName){
@@ -58,7 +60,7 @@ if (storedColor){
 /* This stuff happens later when the user does something */
 // when the user changes their favorites, update localStorage
 nameField.onchange = e=>{ localStorage.setItem(nameKey, e.target.value); };
-colorSelect.onchange = e=>{ localStorage.setItem(colorKey, e.target.value); };
+colorSelect.onchange = e=>{ localStorage.setItem(colorKey, e.target.value);  backc.style.backgroundColor =  e.target.value;};
 
 
 
