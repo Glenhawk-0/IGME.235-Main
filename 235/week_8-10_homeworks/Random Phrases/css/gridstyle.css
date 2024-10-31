@@ -1,0 +1,46 @@
+
+        body {
+            border: 1px solid gray;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+   background-color: #cccccc;
+ }
+/*________________Simply declare and assign to grid____________________________*/
+.header { grid-area: header;}
+.phrase { grid-area: phrase;}
+.button { grid-area: button;}
+
+/*_________________________________________________________________________________*/
+.grid-container {
+
+
+grid-template-columns: 1fr 1fr 1fr  ;
+grid-template-rows: 50px 1fr 80px 2fr  100px ;
+
+display: grid;
+grid-template-areas:
+' . . . '
+'header header header'
+' . . . '
+'phrase phrase phrase'
+' .  button  . '
+;
+
+
+grid-gap: 5px;
+/*background-color: rgba(255, 98, 0, 0); /*ive set the color to transparent/**/
+padding: 5px;
+font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal; 
+/*margin: 1rem;*/
+background-image: url("../media.backgroundPaper.png");
+}
+
+
+/*_________________________________________now give them value_________________________________*/ 
+
+.header {  background-color: azure;}
+.phrase { background-color: gainsboro;}
+.button { background-color: red;}
