@@ -20,18 +20,41 @@
 <h3>Lennon Hare</h3>
 
 <div class="grid-container">
+    
     <!--<div class="header1">Header</div> -->
 
     <div class=" header "> <p>headers</p> </div>
     <div class=" phrase "> <p>phrase</p> </div>
-    <div class=" button "> <p>Button</p> </div>
+    <div class=" button "> <img src="media/nonPressedButton.PNG" alt="Non Presed button">   </div>
 
 
 
 <!--java    vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->
     <script>
+"use strict";
+//declare variables
+let phraseText = ["Phrase1","Phrase2","Phrase3","Phrase4","Phrase5"] ;
+ 
+//declare functions 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+//declare media stuff
+let ps = document.querySelectorAll("p");
+
+//declare objects and such
 
 
+//do stuff______
+
+    let choosenPhrase = phraseText[getRandomInt(phraseText.length)];
+    console.log("choosenPhrase: " + choosenPhrase);
+    ps[1].innerText = choosenPhrase;
+    
+    /* Thoughts__________
+    // perhaps to order things we shall make an object called choosend and each phrase will have its coresponding image. that way our code can grab em both. 
+    */
     </script>
 <!--java END ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-->
 
