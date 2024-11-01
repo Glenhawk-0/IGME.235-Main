@@ -56,3 +56,13 @@ background-image: url("../media/backgroundPaper.png");
 .header {  background-color: azure;}
 .phrase { background-color: gainsboro; }
 .button { background-color: red;  }
+
+/* mouse over link */
+button:hover {
+  color: rgb(141, 48, 48);
+}
+
+/* selected link */
+button:active {
+  color: rgb(255, 255, 0);
+} 
