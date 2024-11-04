@@ -20,6 +20,10 @@
 .phrase { grid-area: phrase;}
 .button { grid-area: button;}
 
+.defaultImg { grid-area: button;}
+.hoverImg{ grid-area: button ; display: none;}
+.activeImg{ grid-area: button; display: none;}
+
 /*_________________________________________________________________________________*/
 .grid-container {
 
@@ -47,7 +51,8 @@ font-family: "Roboto", sans-serif;
 /*margin: 1rem;*/
 /*background-size: auto;
 /*background-position: ;/**/
-background-image: url("../media/backgroundPaper.png");
+
+/*background-image: url("../media/backgroundPaper.png");/**/
 }
 
 
@@ -57,12 +62,38 @@ background-image: url("../media/backgroundPaper.png");
 .phrase { background-color: gainsboro; }
 .button { background-color: red;  }
 
-/* mouse over link */
-button:hover {
-  color: rgb(141, 48, 48);
+
+/* mouse over button */
+
+.button:hover {
+  background-color: rgb(185, 0, 0);
+}
+.button:active {
+  background-color: rgb(255, 255, 0);
+
+} 
+
+
+
+/* selected button */
+
+/*.defaultImg:hover {
+
+}*/
+
+/*
+.button .hoverImg {
+  display: none;
 }
 
-/* selected link */
-button:active {
-  color: rgb(255, 255, 0);
-} 
+.button:hover .hoverImg {
+  display: grid;
+}
+
+.button .activeImg {
+  display: none;
+}
+
+.button:active .activeImg {
+  display: grid;
+}/**/
