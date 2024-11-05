@@ -26,7 +26,7 @@
   
     <div class=" header "> <p>headers</p> </div>
     <div class=" phrase "> <p>phrase</p> </div>
-<div class=" button ">   <!--  <img src="media/nonPressedButton.PNG" alt="Non Presed button">  --> </div>
+<div class=" button ">    <img src="media/nonPressedButton.PNG" alt="Non Presed button" id = "images">   </div>
     <!--<div class=" button ">  -->
         
 
@@ -91,15 +91,32 @@ let divs = document.querySelectorAll("div");
 //declare objects and such
 
 
-//do stuff______
 
+
+
+//do stuff______
+function randomize () {
     let choosenObject = phraseObjects[getRandomInt(phraseObjects.length)];
     console.log("choosenObject: " + choosenObject);
     ps[0].innerText = choosenObject.header;
     ps[1].innerText = choosenObject.phrase;
     divs[0].style = choosenObject.photo;
+}
+//
 
-    
+randomize();
+
+//getting the image for that damn button 
+let img = document.getElementById('images')
+img.addEventListener('mouseover' , function(){ img.src = 'media/halfPressedButton.PNG';})
+img.addEventListener('mouseout' , function(){ img.src = 'media/nonPressedButton.PNG';})
+img.addEventListener('mousedown' , function(){ img.src = 'media/pressedButton.PNG'; randomize()})
+img.addEventListener('mouseup' , function(){ img.src = 'media/nonPressedButton.PNG';})
+
+
+
+
+
     /*
     https://youtu.be/ydeQbbF9jbw?si=iEaGmZs6Sq_4KEwh
     
