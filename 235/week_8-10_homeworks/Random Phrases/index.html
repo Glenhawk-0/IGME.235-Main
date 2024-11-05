@@ -95,7 +95,7 @@ let divs = document.querySelectorAll("div");
 
 
 //do stuff______
-function randomize () {
+function displayQuote () {
     let choosenObject = phraseObjects[getRandomInt(phraseObjects.length)];
     console.log("choosenObject: " + choosenObject);
     //ps[0].innerText = choosenObject.header;
@@ -104,13 +104,13 @@ function randomize () {
 }
 //
 
-randomize();
+displayQuote();
 
 //getting the image for that damn button 
 let img = document.getElementById('images')
 img.addEventListener('mouseover' , function(){ img.src = 'media/halfPressedButton.PNG';})
 img.addEventListener('mouseout' , function(){ img.src = 'media/nonPressedButton.PNG';})
-img.addEventListener('mousedown' , function(){ img.src = 'media/pressedButton.PNG'; randomize()})
+img.addEventListener('mousedown' , function(){ img.src = 'media/pressedButton.PNG'; displayQuote()})
 img.addEventListener('mouseup' , function(){ img.src = 'media/nonPressedButton.PNG';})
 
 
