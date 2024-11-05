@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+  <title>Image Gallery</title>
+   <style>
+   		body {
+		  font-family: "Helvetica","Arial",serif;
+		  color: #333;
+		  background-color: #fff;
+		  margin: 1em 10%;
+		}
+		
+		#main {
+			padding-top: 30px;
+			width: 400px;
+			margin: 0 auto;
+		}
+		
+   		span[data-image]{
+   			transition-property: opacity;
+   			transition-duration: 0.5s;
+   			color: #c60;
+		  	background-color: transparent;
+		  	font-weight: bold;
+		  	text-decoration: none;
+		  	cursor: pointer;
+   		}
+   		
+   		span[data-image]:hover{
+   			opacity: 0.5;
+   		}
+		
+		h1 {
+		  color: #333;
+		  background-color: transparent;
+		}
+		
+		ul {
+		  padding: 0;
+		}
+		
+		li {
+		  float: left;
+		  padding: 1em;
+		  list-style: none;
+		}
+		
+		img {
+		  display:block;
+		  clear: both;
+		  box-shadow: 7px 7px 5px #888;
+		  border:1px solid #aaa;
+		  transition-property: opacity;
+   		transition-duration: 0.5s;
+		}
+
+		footer{
+			font-size:70%;
+			color:#bbb;
+			text-align:center;
+		}
+   </style>
+  
+
+</head>
+<body>
+  <section id="main">
+      <h1>Snapshots</h1>
+      <ul>
+        <li><span data-image="cassie.jpg" title="a_cassie" >Cassie</span></li>    		
+        <li><span data-image="seal.jpg" title="a_seal">Seal</span></li>				
+        <li><span data-image="wolf.jpg" title="a_wolf">Wolf</span></li>				
+        <li><span data-image="eagle.jpg" title="a_eagle">Eagle</span></li>				
+      </ul>
+      <div id="imagewrapper">
+        <img id="placeholder" src="images/placeholder.gif" alt="my image gallery" /> 	
+       <p id="description">Choose an image.</p>
+     <footer>
+        <p>For IGME-235.03/05 Intro to Game Web Tech</p>
+     </footer>
+    </section>
+     
+	 
+	 
+	 <script>
+/////////////////////////////////////////////////////////
+
+	let lis = document.querySelectorAll("li");
+	let imgs = document.querySelector("img")
+
+		let srcOfImage = []
+	for(let i = 0; i < lis.length; i++){
+		let datasetImage = lis[i].firstChild.dataset.image
+		console.log("lis " + i + " " + datasetImage);
+		srcOfImage.push(datasetImage)
+	}
+
+	
+	function insertImage (theImage){
+		console.log("function 'insertImage' has occured ")
+		imgs.src = "images/" + theImage	
+	}
+
+
+	//button time
+	for(let i = 0; i < lis.length; i++){
+	console.log("button assining for loop ocuured")
+	
+	if (i === 0){
+	lis[i].firstChild.setAttribute("onclick", 'insertImage(srcOfImage[0])')
+	}
+	if (i === 1){
+	lis[i].firstChild.setAttribute("onclick", 'insertImage(srcOfImage[1])')
+	}
+	if (i === 2){
+	lis[i].firstChild.setAttribute("onclick", 'insertImage(srcOfImage[2])')
+	}
+	if (i === 3){
+	lis[i].firstChild.setAttribute("onclick", 'insertImage(srcOfImage[3])')
+	}
+	console.log(lis[i].firstChild)
+	}
+	
+
+	/*
+	The name of the image is stored in the data-image (custom data) attribute of each
+	span. In JavaScript we access these custom data properties using the .dataset 
+	property. We also covered this in web-apps-6.
+	*/
+	</script>
+	   
+</body>
+</html>
