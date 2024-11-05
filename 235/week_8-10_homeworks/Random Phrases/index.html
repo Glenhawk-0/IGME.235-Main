@@ -16,17 +16,17 @@
 
 <!--body___________- - - -___________________________________ -->
 <body>
-<h1>Title of page</h1>
+<h1>Mario</h1>
 <h3>Lennon Hare</h3>
 
-<div class="grid-container" style="background-image: url('media/backgroundPaper.png');">
+<div class="grid-container" style="background-image: url('media/paperBowser.png') ; ">
     
 
     <!--<div class="header1">Header</div> -->
   
-    <div class=" header "> <p>headers</p> </div>
+    <div class=" header "> <p>What would King Bowser do?</p> </div>
     <div class=" phrase "> <p>phrase</p> </div>
-<div class=" button ">    <img src="media/nonPressedButton.PNG" alt="Non Presed button" id = "images">   </div>
+<div class=" button ">    <img src="media/nonPressedButton.PNG" alt="Non Presed button"  id = "images">   </div>
     <!--<div class=" button ">  -->
         
 
@@ -98,9 +98,9 @@ let divs = document.querySelectorAll("div");
 function randomize () {
     let choosenObject = phraseObjects[getRandomInt(phraseObjects.length)];
     console.log("choosenObject: " + choosenObject);
-    ps[0].innerText = choosenObject.header;
+    //ps[0].innerText = choosenObject.header;
     ps[1].innerText = choosenObject.phrase;
-    divs[0].style = choosenObject.photo;
+    //divs[0].style = choosenObject.photo;
 }
 //
 

@@ -29,15 +29,16 @@
 
 
 grid-template-columns: 1fr 1fr 1fr  ;
-grid-template-rows: 50px 1fr 80px 2fr 50px 110px ;
+grid-template-rows: 50px 1fr 80px  50px 2fr 140px 110px ;
 
 display: grid;
 grid-template-areas:
 ' . . . '
 'header header header'
 ' . . . '
-'phrase phrase phrase'
 ' . . . '
+'phrase phrase phrase'
+'. . .'
 ' .  button  . '
 ;
 
@@ -58,8 +59,8 @@ font-family: "Roboto", sans-serif;
 
 /*_________________________________________now give them value_________________________________*/ 
 
-.header {  background-color: azure;}
-.phrase { background-color: gainsboro; }
+.header {  background-color: rgba(240, 255, 255, 0.941);}
+.phrase { background-color: rgba(220, 220, 220, 0.947); }
 .button { background-color: red;  }
 
 
