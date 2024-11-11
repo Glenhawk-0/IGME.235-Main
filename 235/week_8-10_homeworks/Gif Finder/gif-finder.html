@@ -108,44 +108,46 @@
 	// 3
 	function searchButtonClicked(){//start funtion
 		console.log("searchButtonClicked() called");
-
+//step1
 		// 1
-		const GIPHY_URL = "https://api.giphy.com/v1/gifs/search?";
+		const GIPHY_URL = "https://api.giphy.com/v1/gifs/search?"; //interesting. it all seem to work when the end is. trending?
 
 		// 2
 		//
 		//
-		let GIPHY_KEY = "5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7"; //5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7  //dc6zaTOxFJmzC // may neeed to get new link entirely orrrrr. maybe early on in this i fucked up
+		let GIPHY_KEY = "5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7"; //5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7  //dc6zaTOxFJmzC // may neeed to get new link entirely orrrrr. maybe early on in this i fucked up  //aQyCbBPQ1xJuDwOKWTrkmgL99zoTig7T   // https://api.giphy.com/v1/gifs/search?api_key= // https://api.giphy.com/v1/gifs/search?api_key=aQyCbBPQ1xJuDwOKWTrkmgL99zoTig7T  // https://api.giphy.com/v1/gifs/search?api_key=aQyCbBPQ1xJuDwOKWTrkmgL99zoTig7T=cats&limit=10
 
 		// 3 - build up our URL String
 		let url = GIPHY_URL;
-		url+= "api_key=" + GIPHY_KEY;
+		url += "api_key=" + GIPHY_KEY;
 
 		// 4 - parse the user entered term we wish to search
 		let term = document.querySelector("#searchterm").value;
 		displayTerm = term;
 
 		// 5 - get rid of any leading and trailing spaces
-		term = term.trim;
+		term = term.trim();
 
 		// 6 - encode spaces and special characters
 		term = encodeURIComponent(term);
 
 		// 7 - if there's no term to search then bail out of the function (return does this)
-		if (term.length < 1) return;
+		if (term.length < 1){console.log("Function: searchButtonClicked.Step 7 - We Bailed"); return;}
 
 		// 8 - append the search term to the URL - the parameter name is 'q'
-		url += "&q"+ term;
+		url += "&q="+ term;
 
 		// 9 - grab the user chosen search 'limit' from the <select> and append it to the URL
 		let limit = document.querySelector("#limit").value;
-		url += "&limit=" +limit;
+		url += "&limit=" + limit;
 
 		// 10 - update the UI
 		document.querySelector("#status").innerHTML = "<b>searching for '" + displayTerm + "'</b>";
 
 		// 11 - see what the URL Looks like
 		console.log(url);
+
+//Step1 end (seems ok)
 
 		// 12 Request data!
 		getData(url);
@@ -183,7 +185,7 @@
 		// 8 - if there are no results, print a message and return 
 		if(!obj.data || obj.data.length == 0){
 			document.querySelector("#status").innerHTML = "<b>No results found for '" + displayTerm + "'</b>";
-			console.log("we Bailed")
+			console.log("Funtion: dataLoaded.Step 8. we Bailed")
 			return;//bail out
 		}
 
