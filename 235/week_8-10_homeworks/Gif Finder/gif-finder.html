@@ -147,8 +147,40 @@
 		// 11 - see what the URL Looks like
 		console.log(url);
 
-	}//end funtion
+		// 12 Request data!
+		getData(url);
+
+	}//end funtion  // end 3
 	
+
+	function getData(url){//function
+		// 1 - create a new XHR object
+		let xhr = new XMLHttpRequest();
+
+		// 2 - set the onload Handler
+		xhr.onload = dataLoaded;
+		
+		// 3 - set the onerror handler
+		xhr.onerror = dataError;
+
+		// 4 - open connection and send the request
+		xhr.open("GET",url);
+		xhr.send();
+
+	}//end function
+
+	//Callback Functions 
+	function dataLoaded(e){
+		// 5 - event.target is the xhr object
+		let xhr = e.target;
+
+		// 6 - xhr.responseText is the JSON file we just downloaded
+		console.log(xhr.responseText);
+	}//end dataLoaded
+
+	function dataError(e){
+		console.log("An error occured")
+	}//end dataError
 
 
 //in class portion is optional
