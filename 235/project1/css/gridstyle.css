@@ -173,8 +173,9 @@ a:active {
 
 
         grid-template-columns: 1fr 1fr 1fr 1fr ;
-        grid-template-rows: 50px 800px 50px 250px 250px 800px 50px 250px 250px 800px 50px ;
+        grid-template-rows: 50px 800px 50px 1fr   1fr   800px 50px 1fr   1fr   800px 50px ;
         /*                  menu image head block block image head block block image foot */
+                          /*50px 800px 50px 250px 250px 800px 50px 250px 250px 800px 50px ;*/
         display: grid;
         grid-template-areas:
         ' menu menu menu menu    '
@@ -252,7 +253,7 @@ a:active {
     'footer footer footer footer';
 
     grid-template-columns: 1fr 1fr 1fr 1fr ; /*width*/
-    grid-template-rows: 50px 500px 50px 500px 300px 500px 50px 500px 300px 500px 100px ;  /*height*/
+    grid-template-rows: 50px 500px 50px 0.5fr 0.5fr 500px 50px 0.5fr 0.5fr 500px 100px ;  /*height*/
     /*                  menu image head info  block image head info  block image foot */
 }
     }/*end media quert and mobile stuff*/
