@@ -2,21 +2,21 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 "use strict";
 const app = new PIXI.Application({
-    width: 600,
-    height: 600
+	width: 600,
+	height: 600
 });
 document.body.appendChild(app.view);
 
 // constants
 const sceneWidth = app.view.width;
-const sceneHeight = app.view.height;	
+const sceneHeight = app.view.height;
 
 // pre-load the images (this code works with PIXI v6)
 app.loader.
-    add([
-        "images/spaceship.png",
-        "images/explosions.png"
-    ]);
+	add([
+		"images/spaceship.png",
+		"images/explosions.png"
+	]);
 app.loader.onProgress.add(e => { console.log(`progress=${e.progress}`) });
 app.loader.onComplete.add(setup);
 app.loader.load();
@@ -42,7 +42,7 @@ let stage;
 
 // game variables
 let startScene;
-let gameScene,ship,scoreLabel,lifeLabel,shootSound,hitSound,fireballSound;
+let gameScene, ship, scoreLabel, lifeLabel, shootSound, hitSound, fireballSound;
 let gameOverScene;
 
 let circles = [];
@@ -74,15 +74,15 @@ function setup() {
 	createLabelsAndButtons();
 
 	// #5 - Create ship
-	
+
 	// #6 - Load Sounds
-	
+
 	// #7 - Load sprite sheet
-		
+
 	// #8 - Start update loop
-	
+
 	// #9 - Start listening for click events on the canvas
-	
+
 	// Now our `startScene` is visible
 	// Clicking the button calls startGame()
 }
@@ -92,14 +92,15 @@ function createLabelsAndButtons() {
 		fill: 0xFF0000,
 		fontSize: 48,
 		fontFamily: "Verdana"
+
 	});
 
 	// 1 - set up `startScene`
 	// 1A - make top start label
 	let startLabel1 = new PIXI.Text("Circle Blast!");
 	startLabel1.style = new PIXI.TextStyle({
-		fill: 0xFF0000 ,
-		fontSize: 96, 
+		fill: 0xFF0000,
+		fontSize: 96,
 		fontFamily: "Verdana",
 		stroke: 0xFF0000,
 		strokeThickness: 6
@@ -111,8 +112,8 @@ function createLabelsAndButtons() {
 	// 1B - make middle start label
 	let startLabel2 = new PIXI.Text("R U worthy..?");
 	startLabel2.style = new PIXI.TextStyle({
-		fill: 0xFFFFFF ,
-		fontSize: 32, 
+		fill: 0xFFFFFF,
+		fontSize: 32,
 		fontFamily: "Verdana",
 		fontStyle: "italic",
 		stroke: 0xFF0000,
@@ -133,4 +134,78 @@ function createLabelsAndButtons() {
 	startButton.on('pointerover', e => e.target.alpha = 0.7); // concise arrow with no brackets
 	startButton.on('pointerout', e => e.currentTarget.alpha = 1.0); // ditto /**/ 
 	startScene.addChild(startButton);
+
+
+	// 2 - set up `gameScene`
+	let textStyle = new PIXI.TextStyle({
+		fill: 0xFFFFFF,
+		fontSize: 18,
+		fontFamily: "Verdana",
+		stroke: 0xFF0000,
+		strokeThickness: 4
+	});
+
+	//2A - make score label
+	scoreLabel = new PIXI.Text();
+	scoreLabel.style = textStyle;
+	scoreLabel.x = 5;
+	scoreLabel.y = 5;
+	gameScene.addChild(scoreLabel);
+	increaseScoreBy(0);
+
+	// 2B - make life label
+	lifeLabel = new PIXI.Text();
+	lifeLabel.style = textStyle;
+	lifeLabel.x = 5;
+	lifeLabel.y = 26;
+	gameScene.addChild(lifeLabel);
+	decreaseLifeBy(0);
+
+	
+	// 3 - set up `gameOverScene`
+	// 3A - make game over text
+	let gameOverText = new PIXI.Text("Game Over!\n        :-O");
+	textStyle = new PIXI.TextStyle({
+		fill: 0xFFFFFF,
+		fontSize: 64,
+		fontFamily: "Futura",
+		stroke: 0xFF0000,
+		strokeThickness: 6
+	});
+	gameOverText.style = textStyle;
+	gameOverText.x = 100;
+	gameOverText.y = sceneHeight / 2 - 160;
+	gameOverScene.addChild(gameOverText);
+
+	// 3B - make "play again?" button
+	let playAgainButton = new PIXI.Text("Play Again?");
+	playAgainButton.style = buttonStyle;
+	playAgainButton.x = 150;
+	playAgainButton.y = sceneHeight - 100;
+	playAgainButton.interactive = true;
+	playAgainButton.buttonMode = true;
+	playAgainButton.on("pointerup", startGame); // startGame is a function reference
+	playAgainButton.on('pointerover', e => e.target.alpha = 0.7); // concise arrow function with no brackets
+	playAgainButton.on('pointerout', e => e.currentTarget.alpha = 1.0); // ditto
+	gameOverScene.addChild(playAgainButton);
+
+}//end of createLabelsAndButtons
+
+
+function startGame() {
+	startScene.visible = false;
+	gameOverScene.visible = false;
+	gameScene.visible = true;
+	//.. more to come
+}
+
+function increaseScoreBy(value) {
+	score += value;
+	scoreLabel.text = `Score ${score}`;
+}
+
+function decreaseLifeBy(value) {
+	life -= value;
+	life = parseInt(life);
+	lifeLabel.text = `Life		${life}%`;
 }
