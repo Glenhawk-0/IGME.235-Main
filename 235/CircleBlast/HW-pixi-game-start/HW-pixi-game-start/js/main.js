@@ -68,15 +68,27 @@ function setup() {
 
 	// #3 - Create the `gameOver` scene and make it invisible
 	gameOverScene = new PIXI.Container();
+	gameOverScene.visible = false;
 	stage.addChild(gameOverScene);
 
 	// #4 - Create labels for all 3 scenes
 	createLabelsAndButtons();
 
 	// #5 - Create ship
-
+	ship = new Ship();
+	gameScene.addChild(ship);
 	// #6 - Load Sounds
+		shootSound  = new Howl({
+			src:['sounds']
+		});
 
+		hitSound = new Howl ({
+			src: ['sounds/hit.mp3']
+		});
+
+		fireballSound = new Howl ({
+			src: ['sounds/fireball.mp3']
+		});
 	// #7 - Load sprite sheet
 
 	// #8 - Start update loop
@@ -168,7 +180,7 @@ function createLabelsAndButtons() {
 	textStyle = new PIXI.TextStyle({
 		fill: 0xFFFFFF,
 		fontSize: 64,
-		fontFamily: "Futura",
+		fontFamily: "Verdana",
 		stroke: 0xFF0000,
 		strokeThickness: 6
 	});
