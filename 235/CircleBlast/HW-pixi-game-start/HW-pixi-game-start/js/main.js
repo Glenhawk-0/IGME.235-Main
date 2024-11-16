@@ -1,6 +1,9 @@
 // We will use `strict mode`, which helps us by having the browser catch many common JS mistakes
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 "use strict";
+
+
+
 const app = new PIXI.Application({
 	width: 600,
 	height: 600
@@ -51,6 +54,7 @@ let aliens = [];
 let explosions = [];
 let explosionTextures;
 let score = 0;
+
 let life = 100;
 let levelNum = 1;
 let paused = true;
@@ -180,7 +184,7 @@ function createLabelsAndButtons() {
 	
 	// 3 - set up `gameOverScene`
 	// 3A - make game over text
-	let gameOverText = new PIXI.Text("Game Over!\n        :-O");
+	let gameOverText = new PIXI.Text("Game Over!\n        :-O\n\nFinal score: " +  score  +" " );
 	textStyle = new PIXI.TextStyle({
 		fill: 0xFFFFFF,
 		fontSize: 64,
@@ -213,6 +217,7 @@ function startGame() {
 	gameOverScene.visible = false;
 	gameScene.visible = true;
 	levelNum = 1;
+	
 	score = 0;
 	life  = 100;
 	increaseScoreBy(0);
@@ -224,7 +229,7 @@ function startGame() {
 
 function increaseScoreBy(value) {
 	score += value;
-	scoreLabel.text = `Score ${score}`;
+	scoreLabel.text = `Score: ${score}`;
 }
 
 function decreaseLifeBy(value) {
@@ -282,7 +287,7 @@ function gameLoop(){
 		// #5A - circles & bullets
 		if (rectsIntersect(c,b)){
 			fireballSound.play();
-			createExplosion(c.x,c.y,64,64); //we will implement this soon
+			createExplosion(c.x,c.y,64,64); 
 			gameScene.removeChild(c);
 			c.isAlive = false;
 			gameScene.removeChild(b);
@@ -316,6 +321,7 @@ function gameLoop(){
 	
 	// #7 - Is game over?
 	if (life <= 0){
+		
 		end();
 		return; // return here so we skip #8 below
 	}
@@ -345,6 +351,7 @@ function loadLevel(){
 function end() {
 	paused = true;
 	//clear out level
+	gameOverScene.children[0].text = ("Game Over!\n        :-O\n\nFinal score: " +  score  +" " );
 	circles.forEach(c=>gameScene.removeChild(c)); // concise arrow function with no brackets and no return
 	circles = [];
 
@@ -364,10 +371,22 @@ function fireBullet(e){
 	//let mouseY = e.clientY - rect.y;
 	//console.log(`${mouseX},${mouseY}`);
 	if (paused) return;
+	let displace = 15 
+	let b = [new Bullet(0xFFFFFF, ship.x-displace , ship.y) , new Bullet(0xFFFFFF, ship.x , ship.y), new Bullet(0xFFFFFF, ship.x+displace , ship.y) ]; //new Bullet(0xFFFFFF, ship.x , ship.y);
+	
+	if (score < 9) {
+		bullets.push(b[1])
+		bullets.push(b[1])
+		gameScene.addChild(b[1]);
+	}	
+	else{	
+	for (const element of b){
+	bullets.push(element)
+	bullets.push(element)
+	gameScene.addChild(element);
+	}
 
-	let b = new Bullet(0xFFFFFF, ship.x , ship.y);
-	bullets.push(b)
-	gameScene.addChild(b);
+}
 	shootSound.play();
 }
 
