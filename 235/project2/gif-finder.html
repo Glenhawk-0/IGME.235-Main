@@ -122,34 +122,32 @@
 		// 2
 		let displayTerm = "";
 
-		//searchButtonClicked(true)// tester for the arrow buttons
-		 function rightArrowButtonClicked(){
-			pageNum += 1
-			searchButtonClicked(true);
-		 }
+		//searchingNow(true)// tester for the arrow buttons
+		 
+		function rightArrowButtonClicked(){
+			if (pageNum < 9 && weHaveSearched == true ) { 
+				pageNum += 1
+				searchingNow();
+			} else{console.log("cant input Right Arrow")}
+		}
+
 		 function leftArrowButtonClicked(){
-			if (pageNum != 0) { 
+			if (pageNum > 0 && weHaveSearched == true) { 
 				pageNum -= 1
-				searchButtonClicked(true);
-			} else{
-				console.log("we cant go below Page 1 Dummy")
-			}
-			
+				searchingNow();
+			} else{console.log("cant input Left Arrow")}
 		 }
 
+		function searchButtonClicked() {
+				pageNum = 0
+				weHaveSearched = true
+				searchingNow()
+		}
 
 		// 3
-		function searchButtonClicked(arrowClick = false) {//start funtion
-			console.log("searchButtonClicked() called");
-			console.log("was the arrowClicked? " + arrowClick);
+		function searchingNow() {//start funtion
+			console.log("searchingNow() called\nhave we searched Before? " + weHaveSearched);
 
-			if (arrowClick == false){
-				pageNum = 0 
-				weHaveSearched = true
-			}else if (arrowClick == true && weHaveSearched == false){
-				console.log("You cant click these Yet. you havevent even searched anything")
-				return;
-			}
 
 			//step1
 			// 1
@@ -158,8 +156,8 @@
 			// 2
 			//
 			//
-			let GIPHY_KEY = "aQyCbBPQ1xJuDwOKWTrkmgL99zoTig7T"; //5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7  //dc6zaTOxFJmzC // may neeed to get new link entirely orrrrr. maybe early on in this i fucked up  //aQyCbBPQ1xJuDwOKWTrkmgL99zoTig7T   // https://api.giphy.com/v1/gifs/search?api_key= // https://api.giphy.com/v1/gifs/search?api_key=aQyCbBPQ1xJuDwOKWTrkmgL99zoTig7T  // https://api.giphy.com/v1/gifs/search?api_key=aQyCbBPQ1xJuDwOKWTrkmgL99zoTig7T=cats&limit=10
-
+			let GIPHY_KEY = "5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7"; //5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7  //aQyCbBPQ1xJuDwOKWTrkmgL99zoTig7T  mine  // https://api.giphy.com/v1/gifs/search?api_key= // https://api.giphy.com/v1/gifs/search?api_key=aQyCbBPQ1xJuDwOKWTrkmgL99zoTig7T  // https://api.giphy.com/v1/gifs/search?api_key=aQyCbBPQ1xJuDwOKWTrkmgL99zoTig7T=cats&limit=10
+																//  og^^^^^								^^^^^Mine     (last i checked, weird error going on with my api so well use the old one for now but come back to this lennon)					
 			// 3 - build up our URL String
 			let url = GIPHY_URL;
 			url += "api_key=" + GIPHY_KEY;
@@ -175,7 +173,7 @@
 			term = encodeURIComponent(term);
 
 			// 7 - if there's no term to search then bail out of the function (return does this)
-			if (term.length < 1) { console.log("Function: searchButtonClicked.Step 7 - We Bailed becauase there no term"); return; }
+			if (term.length < 1) { console.log("Function: searchingNow.Step 7 - We Bailed becauase there no term"); return; }
 
 			// 8 - append the search term to the URL - the parameter name is 'q'
 			url += "&q=" + term;
@@ -231,9 +229,9 @@
 			// 7 - turn the text into a parsable JavaScript object
 			let obj = JSON.parse(xhr.responseText);
 			
-			console.log(`object '${displayTerm}' : ` + obj)
-			console.log(obj.data)
-			console.log(obj.pagination)
+			console.log(`object '${displayTerm}'`)
+			console.log(obj)
+
 
 			//new step for multi page
 			if (obj.pagination.total_count < obj.offset) { }
@@ -244,7 +242,7 @@
 					 	pageNum -= 1;
 						 console.log(`Funtion: dataLoaded.Step 8. we bailed because their is no data past page ${(pageNum + 1)}`);
 						 console.log("perhaps we can go back and try again");
-						 searchButtonClicked(true);
+						 searchingNow();
 
 				}
 				else {
@@ -318,11 +316,11 @@
 
 <body>
 	<header>
-		<h1>Giphy Finder</h1>
+		<h2>Giphy Finder Deluxe</h2>
 	</header>
 
 	<div class="widgets">
-		Search Term ->
+		Search Here:
 		<input id="searchterm" type="text" size="20" maxlength="20" autofocus value="tetris" />
 	</div>
 
@@ -343,9 +341,9 @@
 	<div class="widgets">
 		<button type="button" id="Larrow" class="green">Previous page<br> <=== </button>
 
-		<button type="button" id="search" class="green">Search For GIFs<br> :-) </button>
+		<button type="button" id="search" class="green">Search For GIFs<br> vvvvv </button>
 
-		<button type="button" id="Rarrow" class="green">Find some GIFs!<br> ===> </button>
+		<button type="button" id="Rarrow" class="green">Next Page <br> ===> </button>
 	</div>
 	<div id="status">Ready to Search!</div>
 	<hr>
