@@ -5,19 +5,24 @@
 	<meta charset="utf-8" />
 	<title>Giphy Finder</title>
 
-<!--stuff for special fonts-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-<!-- font-family: "Pixelify Sans", system-ui;font-optical-sizing: auto;  font-weight: <weight>;font-style: ;-->
-<!--/stuff for pixel font-->
+	<!--stuff for special fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+	<!-- font-family: "Pixelify Sans", system-ui;font-optical-sizing: auto;  font-weight: <weight>;font-style: ;-->
+	<!--/stuff for pixel font-->
 
 	<style>
+		
+		
 		* {
 			/*font-family: verdana, tahoma, sans-serif;*/
-			font-family: "Pixelify Sans", system-ui; color:#0A090C; 
+			font-family: "Pixelify Sans", system-ui;
+			color: #0A090C;
 		}
 
+
+		/*old Css
 		header {
 			background: url(images/red_to_black_diamond.gif);
 			height: 195px;
@@ -40,13 +45,14 @@
 			position: relative;
 			height: 175px;
 			width: 100px;
-			float: left; /*somehow, this right here makes em all allign properly.*/
+			float: left;
+			/*somehow, this right here makes em all allign properly./**//*
 			border: 1px solid gray;
 			padding: 5px;
 			margin-left: 10px;
 			margin-bottom: 10px;
 		}
-
+		
 		.result img {
 			position: absolute;
 			left: 5px;
@@ -64,6 +70,17 @@
 		.result audio {
 			width: 130px;
 		}
+
+
+
+		.widgets {
+			margin-top: 1em;
+			margin-bottom: 1em;
+		}
+		/*End of old css*/
+
+
+		/*Button stuff vvvvvvvvvvvvvvvvvvvv*/
 
 		button {
 			/*display: inline-block;*/
@@ -102,20 +119,18 @@
 			outline: 0;
 		}
 
-		.widgets {
-			margin-top: 1em;
-			margin-bottom: 1em;
-		}
+		/*Button stuff ^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
 
 	</style>
 
 	<script>
 		// 1
-		
-		window.onload = (e) => { document.querySelector("#search").onclick = searchButtonClicked 
- 								 document.querySelector("#Rarrow").onclick = rightArrowButtonClicked
-								 document.querySelector("#Larrow").onclick = leftArrowButtonClicked
-								 document.querySelector("#trend").onclick =  trendingButtonClicked
+
+		window.onload = (e) => {
+			document.querySelector("#search").onclick = searchButtonClicked
+			document.querySelector("#Rarrow").onclick = rightArrowButtonClicked
+			document.querySelector("#Larrow").onclick = leftArrowButtonClicked
+			document.querySelector("#trend").onclick = trendingButtonClicked
 		};
 
 		let ArrowSearchType = "und";
@@ -125,31 +140,31 @@
 		let displayTerm = "";
 
 		//searchingNow(true)// tester for the arrow buttons
-		 
-		function rightArrowButtonClicked(){
-			if (pageNum < 9 && weHaveSearched == true ) { 
+
+		function rightArrowButtonClicked() {
+			if (pageNum < 9 && weHaveSearched == true) {
 				pageNum += 1
 				searchingNow(ArrowSearchType);
-			} else{console.log("cant input Right Arrow")}
+			} else { console.log("cant input Right Arrow") }
 		}
 
-		 function leftArrowButtonClicked(){
-			if (pageNum > 0 && weHaveSearched == true) { 
+		function leftArrowButtonClicked() {
+			if (pageNum > 0 && weHaveSearched == true) {
 				pageNum -= 1
 				searchingNow(ArrowSearchType);
-			} else{console.log("cant input Left Arrow")}
-		 }
-		 
-		 function trendingButtonClicked() {
-				pageNum = 0
-				weHaveSearched = true
-				searchingNow("trending?")
+			} else { console.log("cant input Left Arrow") }
+		}
+
+		function trendingButtonClicked() {
+			pageNum = 0
+			weHaveSearched = true
+			searchingNow("trending?")
 		}
 
 		function searchButtonClicked() {
-				pageNum = 0
-				weHaveSearched = true
-				searchingNow("search?")
+			pageNum = 0
+			weHaveSearched = true
+			searchingNow("search?")
 		}
 
 		// 3
@@ -158,8 +173,8 @@
 			ArrowSearchType = searchType;
 			document.querySelector("#content").innerHTML = `<img src="images/spinner.gif" alt="spinner" width="500" height="500">`;
 			//debugger
-			
-			
+
+
 
 			//step1
 			// 1
@@ -169,31 +184,33 @@
 			//
 			//
 			let GIPHY_KEY = "5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7"; //5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7  //aQyCbBPQ1xJuDwOKWTrkmgL99zoTig7T  mine  // https://api.giphy.com/v1/gifs/search?api_key= // https://api.giphy.com/v1/gifs/search?api_key=aQyCbBPQ1xJuDwOKWTrkmgL99zoTig7T  // https://api.giphy.com/v1/gifs/search?api_key=aQyCbBPQ1xJuDwOKWTrkmgL99zoTig7T=cats&limit=10
-																//  og^^^^^								^^^^^Mine     (last i checked, weird error going on with my api so well use the old one for now but come back to this lennon)					
+			//  og^^^^^								^^^^^Mine     (last i checked, weird error going on with my api so well use the old one for now but come back to this lennon)					
 			// 3 - build up our URL String
 			let url = GIPHY_URL;
 			url += "api_key=" + GIPHY_KEY;
 
 			// 4 - parse the user entered term we wish to search
-			if (searchType == "search?"){
-			let term = document.querySelector("#searchterm").value;
-			displayTerm = term;
-			
-			// 5 - get rid of any leading and trailing spaces
-			term = term.trim();
+			if (searchType == "search?") {
+				let term = document.querySelector("#searchterm").value;
+				displayTerm = term;
 
-			// 6 - encode spaces and special characters
-			term = encodeURIComponent(term);
+				// 5 - get rid of any leading and trailing spaces
+				term = term.trim();
 
-			// 7 - if there's no term to search then bail out of the function (return does this)
-			if (term.length < 1) { console.log("Function: searchingNow.Step 7 - We Bailed becauase there no term");
-			document.querySelector("#status").innerHTML = `<p>You havent entered anything!</p>`; 
-			document.querySelector("#content").innerHTML = `<p>Invalid Search!</p>`; 
-			return; }
-			
-			// 8 - append the search term to the URL - the parameter name is 'q' ////////////////////////////////add to this. insert a sting varible that can be swaped || OK MAYBE NOT QUITE HERE BUT STILL. WE HAVE A PLAN
-			url += "&q=" + term;
-			}else if (searchType == "trending?" ){
+				// 6 - encode spaces and special characters
+				term = encodeURIComponent(term);
+
+				// 7 - if there's no term to search then bail out of the function (return does this)
+				if (term.length < 1) {
+					console.log("Function: searchingNow.Step 7 - We Bailed becauase there no term");
+					document.querySelector("#status").innerHTML = `<p>You havent entered anything!</p>`;
+					document.querySelector("#content").innerHTML = `<p>Invalid Search!</p>`;
+					return;
+				}
+
+				// 8 - append the search term to the URL - the parameter name is 'q' ////////////////////////////////add to this. insert a sting varible that can be swaped || OK MAYBE NOT QUITE HERE BUT STILL. WE HAVE A PLAN
+				url += "&q=" + term;
+			} else if (searchType == "trending?") {
 				displayTerm = "trending"
 
 			}
@@ -248,7 +265,7 @@
 
 			// 7 - turn the text into a parsable JavaScript object
 			let obj = JSON.parse(xhr.responseText);
-			
+
 			console.log(`object '${displayTerm}'`)
 			console.log(obj)
 
@@ -258,11 +275,11 @@
 
 			// 8 - if there are no results, print a message and return || adding to this for multi pager
 			if (!obj.data || obj.data.length == 0) {
-				if ( (obj.pagination.offset - 50) < obj.pagination.total_count && obj.pagination.total_count > 0) {
-					 	pageNum -= 1;
-						 console.log(`Funtion: dataLoaded.Step 8. we bailed because their is no data past page ${(pageNum + 1)}`);
-						 console.log("perhaps we can go back and try again");
-						 searchingNow(ArrowSearchType);
+				if ((obj.pagination.offset - 50) < obj.pagination.total_count && obj.pagination.total_count > 0) {
+					pageNum -= 1;
+					console.log(`Funtion: dataLoaded.Step 8. we bailed because their is no data past page ${(pageNum + 1)}`);
+					console.log("perhaps we can go back and try again");
+					searchingNow(ArrowSearchType);
 
 				}
 				else {
@@ -278,10 +295,10 @@
 			let results = obj.data
 
 			//debugger
-			
+
 
 			console.log("results.length = " + results.length);
-			let bigString = "<p><i> there are " + obj.pagination.total_count + " total results for '" + displayTerm + "' </i></p> <p><i>You are currently on page " + (pageNum + 1) +" </i></p>";
+			let bigString = "<p><i> there are " + obj.pagination.total_count + " total results for '" + displayTerm + "' </i></p> <p><i>You are currently on page " + (pageNum + 1) + " </i></p>";
 
 			// 10 - loop through the array of results
 			for (let i = 0; i < results.length; i++) {
@@ -361,28 +378,29 @@
 	-->
 	</div>
 
-<div class="center" id="status">Ready to Search!</div>
+	<div class="center" id="status">Ready to Search!</div>
 
 	<div class="widgets , center ">
-		<button type="button" id="Larrow" class="green">Previous page<br> <=== </button>
+		<button type="button" id="Larrow" class="green">Previous page<br>
+			<=== </button>
 
-		<button type="button" id="search" class="green">Search For GIFs<br> vvvvv </button>
+				<button type="button" id="search" class="green">Search For GIFs<br> vvvvv </button>
 
-		<button type="button" id="Rarrow" class="green">Next Page <br> ===> </button>
+				<button type="button" id="Rarrow" class="green">Next Page <br> ===> </button>
 
-		<button type="button" id="trend" class="green"> trending <br> ===> </button>
+				<button type="button" id="trend" class="green"> trending <br> ===> </button>
 
 	</div>
-	
-	
+
+
 	<hr>
 
-	
+
 	<h2 class="center">Results</h2>
 	<div id="content" class="center">
 		<p>No data yet!</p>
 	</div>
-	
+
 
 
 </body>
