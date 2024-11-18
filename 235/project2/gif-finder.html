@@ -107,17 +107,13 @@
 		// 1
 		
 		window.onload = (e) => { document.querySelector("#search").onclick = searchButtonClicked 
- document.querySelector("#Rarrow").onclick = rightArrowButtonClicked
-		 document.querySelector("#Larrow").onclick = leftArrowButtonClicked
+ 								 document.querySelector("#Rarrow").onclick = rightArrowButtonClicked
+								 document.querySelector("#Larrow").onclick = leftArrowButtonClicked
+								 document.querySelector("#trend").onclick =  trendingButtonClicked
 		};
-		//window.onload = (r) => {  };
-		//window.onload = (l) => {  };
 		
-
-
-
-		let searchType = [""]
-		let weHaveSearched = false
+		let ArrowSearchType = "und";
+		let weHaveSearched = false;
 		let pageNum = 6; // for tetris, page 5 has results, page 6 has just passed results, page 7 is far off from results
 		// 2
 		let displayTerm = "";
@@ -127,27 +123,33 @@
 		function rightArrowButtonClicked(){
 			if (pageNum < 9 && weHaveSearched == true ) { 
 				pageNum += 1
-				searchingNow();
+				searchingNow(ArrowSearchType);
 			} else{console.log("cant input Right Arrow")}
 		}
 
 		 function leftArrowButtonClicked(){
 			if (pageNum > 0 && weHaveSearched == true) { 
 				pageNum -= 1
-				searchingNow();
+				searchingNow(ArrowSearchType);
 			} else{console.log("cant input Left Arrow")}
 		 }
+		 
+		 function trendingButtonClicked() {
+				pageNum = 0
+				weHaveSearched = true
+				searchingNow("trending?")
+		}
 
 		function searchButtonClicked() {
 				pageNum = 0
 				weHaveSearched = true
-				searchingNow()
+				searchingNow("search?")
 		}
 
 		// 3
-		function searchingNow() {//start funtion
-			console.log("searchingNow() called\nhave we searched Before? " + weHaveSearched);
-			
+		function searchingNow(searchType) {//start funtion
+			console.log("searchingNow() called\nhave we searched Before? " + weHaveSearched + "\t what search type? " + searchType);
+			ArrowSearchType = searchType;
 			document.querySelector("#content").innerHTML = `<img src="images/spinner.gif" alt="spinner" width="500" height="500">`;
 			//debugger
 			
@@ -155,7 +157,7 @@
 
 			//step1
 			// 1
-			const GIPHY_URL = "https://api.giphy.com/v1/gifs/search?"; //interesting. it all seem to work when the end is. trending?
+			const GIPHY_URL = "https://api.giphy.com/v1/gifs/" + searchType /* "https://api.giphy.com/v1/gifs/search?"; */ //interesting. it all seem to work when the end is. trending?
 
 			// 2
 			//
@@ -167,9 +169,10 @@
 			url += "api_key=" + GIPHY_KEY;
 
 			// 4 - parse the user entered term we wish to search
+			if (searchType == "search?"){
 			let term = document.querySelector("#searchterm").value;
 			displayTerm = term;
-
+			
 			// 5 - get rid of any leading and trailing spaces
 			term = term.trim();
 
@@ -178,11 +181,16 @@
 
 			// 7 - if there's no term to search then bail out of the function (return does this)
 			if (term.length < 1) { console.log("Function: searchingNow.Step 7 - We Bailed becauase there no term");
+			document.querySelector("#status").innerHTML = `<p>You havent entered anything!</p>`; 
 			document.querySelector("#content").innerHTML = `<p>Invalid Search!</p>`; 
 			return; }
 			
 			// 8 - append the search term to the URL - the parameter name is 'q' ////////////////////////////////add to this. insert a sting varible that can be swaped || OK MAYBE NOT QUITE HERE BUT STILL. WE HAVE A PLAN
 			url += "&q=" + term;
+			}else if (searchType == "trending?" ){
+				displayTerm = "trending"
+
+			}
 
 			// 9 - grab the user chosen search 'limit' from the <select> and append it to the URL
 			let limit = 50 //	document.querySelector("#limit").value;
@@ -354,6 +362,9 @@
 		<button type="button" id="search" class="green">Search For GIFs<br> vvvvv </button>
 
 		<button type="button" id="Rarrow" class="green">Next Page <br> ===> </button>
+
+		<button type="button" id="trend" class="green"> trending <br> ===> </button>
+
 	</div>
 	
 	
