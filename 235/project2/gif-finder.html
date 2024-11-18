@@ -23,11 +23,11 @@
 			height: 195px;
 		}
 
-		header h1 {
+		header h2 {
 			margin: 0;
-			color: blue;
+			color: rgb(211, 0, 0);
 			text-align: center;
-			font-size: 100px;
+			font-size: 50px;
 			padding-top: 35px;
 		}
 
@@ -40,7 +40,7 @@
 			position: relative;
 			height: 175px;
 			width: 100px;
-			float: left;
+			float: left; /*somehow, this right here makes em all allign properly.*/
 			border: 1px solid gray;
 			padding: 5px;
 			margin-left: 10px;
@@ -66,7 +66,7 @@
 		}
 
 		button {
-			display: inline-block;
+			/*display: inline-block;*/
 			cursor: pointer;
 
 			border-style: solid;
@@ -107,9 +107,6 @@
 			margin-bottom: 1em;
 		}
 
-		.center {
-			text-align: center ;
-		}
 	</style>
 
 	<script>
@@ -257,7 +254,7 @@
 
 
 			//new step for multi page
-			if (obj.pagination.total_count < obj.offset) { }
+			//if (obj.pagination.total_count < obj.offset) { }
 
 			// 8 - if there are no results, print a message and return || adding to this for multi pager
 			if (!obj.data || obj.data.length == 0) {
@@ -265,7 +262,7 @@
 					 	pageNum -= 1;
 						 console.log(`Funtion: dataLoaded.Step 8. we bailed because their is no data past page ${(pageNum + 1)}`);
 						 console.log("perhaps we can go back and try again");
-						 searchingNow();
+						 searchingNow(ArrowSearchType);
 
 				}
 				else {
