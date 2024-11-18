@@ -5,13 +5,21 @@
 	<meta charset="utf-8" />
 	<title>Giphy Finder</title>
 
+<!--stuff for special fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+<!-- font-family: "Pixelify Sans", system-ui;font-optical-sizing: auto;  font-weight: <weight>;font-style: ;-->
+<!--/stuff for pixel font-->
+
 	<style>
 		* {
-			font-family: verdana, tahoma, sans-serif;
+			/*font-family: verdana, tahoma, sans-serif;*/
+			font-family: "Pixelify Sans", system-ui; color:#0A090C; 
 		}
 
 		header {
-			background: url(images/blue_to_purple_gradient.gif);
+			background: url(images/red_to_black_diamond.gif);
 			height: 195px;
 		}
 
@@ -70,22 +78,23 @@
 			font-weight: bold;
 			color: #fff;
 			text-shadow: 0 1px 3px rgba(0, 0, 0, .4);
-			font-family: sans-serif;
+			/*font-family: sans-serif;*/
+			font-family: "Pixelify Sans", system-ui;
 			text-decoration: none;
 		}
 
 		button.green {
-			border-color: #8fc800;
-			background: #8fc800;
-			background: linear-gradient(top, #8fc800 0%, #438c00 100%);
+			border-color: #c80000;
+			background: #c80000;
+			background: linear-gradient(top, #c80000 0%, #8c0000 100%);
 		}
 
 		button:hover {
-			background: #8fDD00;
+			background: #dd0000;
 		}
 
 		button:active {
-			background: #8fFF00;
+			background: #ff0000;
 			box-shadow: 0 0 6px rgba(0, 0, 0, .6);
 		}
 
@@ -111,7 +120,7 @@
 								 document.querySelector("#Larrow").onclick = leftArrowButtonClicked
 								 document.querySelector("#trend").onclick =  trendingButtonClicked
 		};
-		
+
 		let ArrowSearchType = "und";
 		let weHaveSearched = false;
 		let pageNum = 6; // for tetris, page 5 has results, page 6 has just passed results, page 7 is far off from results
@@ -329,6 +338,7 @@
 
 
 </head>
+
 
 <body>
 	<header>
