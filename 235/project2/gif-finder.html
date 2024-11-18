@@ -11,7 +11,7 @@
 		}
 
 		header {
-			background: url(images/cats.jpg);
+			background: url(images/blue_to_purple_gradient.gif);
 			height: 195px;
 		}
 
@@ -152,6 +152,7 @@
 			//debugger
 			
 			
+
 			//step1
 			// 1
 			const GIPHY_URL = "https://api.giphy.com/v1/gifs/search?"; //interesting. it all seem to work when the end is. trending?
@@ -253,7 +254,8 @@
 				else {
 					document.querySelector("#status").innerHTML = "<b>No results found for '" + displayTerm + "'</b>";
 					console.log("Funtion: dataLoaded.Step 8. we Bailed, failed to find data")
-					document.querySelector("#content").innerHTML = `<img src="images/no-image-found.png" alt="Could Not Find image" width="500" height="600">`
+					//document.querySelector("#content").innerHTML = `<img src="images/no-image-found.png" alt="Could Not Find image" width="100" height="100">`
+					document.querySelector("#content").innerHTML = `<p>Invalid Search!</p>`
 					return;//bail out
 				}
 			}
@@ -325,7 +327,7 @@
 		<h2>Giphy Finder Deluxe</h2>
 	</header>
 
-	<div class="widgets">
+	<div class="widgets , center ">
 		Search Here:
 		<input id="searchterm" type="text" size="20" maxlength="20" autofocus value="tetris" />
 	</div>
@@ -344,14 +346,17 @@
 	-->
 	</div>
 
-	<div class="widgets">
+<div class="center" id="status">Ready to Search!</div>
+
+	<div class="widgets , center ">
 		<button type="button" id="Larrow" class="green">Previous page<br> <=== </button>
 
 		<button type="button" id="search" class="green">Search For GIFs<br> vvvvv </button>
 
 		<button type="button" id="Rarrow" class="green">Next Page <br> ===> </button>
 	</div>
-	<div id="status">Ready to Search!</div>
+	
+	
 	<hr>
 
 	
