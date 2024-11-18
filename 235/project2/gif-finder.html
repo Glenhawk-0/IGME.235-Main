@@ -41,13 +41,18 @@
 			height: 32px;
 		}
 
+		.widgets {
+			margin-top: 1em;
+			margin-bottom: 1em;
+		} /**/
+
 		.result {
 			position: relative;
 			height: 175px;
 			width: 100px;
 			float: left;
-			/*somehow, this right here makes em all allign properly./**//*
-			border: 1px solid gray;
+			/*somehow, this right here makes em all allign properly./**//**/
+			border: 2px solid gray;
 			padding: 5px;
 			margin-left: 10px;
 			margin-bottom: 10px;
@@ -73,10 +78,7 @@
 
 
 
-		.widgets {
-			margin-top: 1em;
-			margin-bottom: 1em;
-		}
+
 		/*End of old css*/
 
 
@@ -100,7 +102,7 @@
 			text-decoration: none;
 		}
 
-		button.green {
+		button.red {
 			border-color: #c80000;
 			background: #c80000;
 			background: linear-gradient(top, #c80000 0%, #8c0000 100%);
@@ -121,6 +123,44 @@
 
 		/*Button stuff ^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
 
+		/*New stuffvvvvvvvvvvv*/
+
+
+		.grid-container {
+			display: grid;
+
+			.buttons { grid-area: buttons;  }
+			.result { grid-area: flexImages;   }
+grid-template-columns: 1fr 3fr ;
+grid-template-rows:		1fr 1fr 1fr 1fr  ;
+
+display: grid;
+grid-template-areas:
+' buttons	flexImages '
+' buttons	flexImages '
+' buttons	flexImages '
+' buttons	flexImages '
+;
+
+
+
+grid-gap: 5px;
+/*background-color: rgba(255, 98, 0, 0); /*ive set the color to transparent/**/
+padding: 5px;
+/*font-family: sans-serif;*/
+/*margin: 1rem;*/
+
+
+
+
+}
+
+.grid-container > div {
+/*background-color: rgb(255, 0, 0); /*ive set the color to transparent*/
+/*text-align: center;*/
+font-size: 25px;
+/*font-family: sans-serif;*/
+}
 	</style>
 
 	<script>
@@ -355,16 +395,17 @@
 
 
 <body>
+<div class="grid-container">
 	<header>
 		<h2>Giphy Finder Deluxe</h2>
 	</header>
 
-	<div class="widgets , center ">
+	<div class="widgets  ">
 		Search Here:
 		<input id="searchterm" type="text" size="20" maxlength="20" autofocus value="tetris" />
 	</div>
 
-	<div class="widgets">
+	<div class="widgets"><!--Useless list-->
 		<!-- no longer gonna use this.just have 50 and seperate by page
 	Max # results -> 
 	<select id="limit">
@@ -378,17 +419,16 @@
 	-->
 	</div>
 
-	<div class="center" id="status">Ready to Search!</div>
+	<div class="" id="status">Ready to Search!</div>
 
-	<div class="widgets , center ">
-		<button type="button" id="Larrow" class="green">Previous page<br>
-			<=== </button>
+	<div class=" buttons ">
+				<button type="button" id="Larrow" class="red">Previous page<br> <=== </button>
 
-				<button type="button" id="search" class="green">Search For GIFs<br> vvvvv </button>
+				<button type="button" id="search" class="red">Search For GIFs<br> vvvvv </button>
 
-				<button type="button" id="Rarrow" class="green">Next Page <br> ===> </button>
+				<button type="button" id="Rarrow" class="red">Next Page <br> ===> </button>
 
-				<button type="button" id="trend" class="green"> trending <br> ===> </button>
+				<button type="button" id="trend" class="red"> trending <br> ===> </button>
 
 	</div>
 
@@ -396,13 +436,13 @@
 	<hr>
 
 
-	<h2 class="center">Results</h2>
-	<div id="content" class="center">
+	<h2 class="">Results</h2>
+	<div id="content" class="">
 		<p>No data yet!</p>
 	</div>
 
 
-
+</div>
 </body>
 
 </html>
