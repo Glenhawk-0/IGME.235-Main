@@ -116,7 +116,7 @@
 
 
 
-
+		let searchType = [""]
 		let weHaveSearched = false
 		let pageNum = 6; // for tetris, page 5 has results, page 6 has just passed results, page 7 is far off from results
 		// 2
@@ -181,7 +181,7 @@
 			document.querySelector("#content").innerHTML = `<p>Invalid Search!</p>`; 
 			return; }
 			
-			// 8 - append the search term to the URL - the parameter name is 'q'
+			// 8 - append the search term to the URL - the parameter name is 'q' ////////////////////////////////add to this. insert a sting varible that can be swaped || OK MAYBE NOT QUITE HERE BUT STILL. WE HAVE A PLAN
 			url += "&q=" + term;
 
 			// 9 - grab the user chosen search 'limit' from the <select> and append it to the URL
