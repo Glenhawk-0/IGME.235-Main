@@ -124,22 +124,39 @@
 		/*Button stuff ^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
 
 		/*New stuffvvvvvvvvvvv*/
-
+	
 
 		.grid-container {
 			display: grid;
 
-			.buttons { grid-area: buttons;  };
-			.result { grid-area: flexImages;   };
-grid-template-columns: 1fr 1fr 3fr ;
-grid-template-rows:		1fr 1fr 1fr 1fr  ;
+			.mainTitle{grid-area: mainTitle}
+			.searchBar { grid-area: searchBar ;}
+			.searchText{grid-area: searchText;}
+			.resultHeader{grid-area: resultHeader;}
 
 
-grid-template-areas:
-' buttons buttons	flexImages '
-' buttons buttons	flexImages '
-' buttons buttons	flexImages '
-' buttons buttons	flexImages '
+			/*.buttons { grid-area: buttons;  };*/
+			.leftButton { grid-area: leftButton;  };
+			.searchButton { grid-area: searchButton;  };
+			.rightButton { grid-area: rightButton;  };
+			.trendingButton { grid-area: trendingButton;  };
+
+			/*.result { grid-area: result;   };
+			.resultText {grid-area: resultText ;}/**/
+			.resultTextAndImage {grid-area: resultTextAndImage;}
+
+grid-template-columns: 1fr 1fr 5fr ;
+grid-template-rows:		1fr 1fr 1fr 1fr 1fr 1fr   ;
+
+
+grid-template-areas:	
+' mainTitle		 mainTitle		mainTitle '
+' .		 		. 				resultHeader '
+' searchBar 	searchBar		resultTextAndImage '
+' searchText 	searchText		resultTextAndImage '
+' searchButton 	searchButton	resultTextAndImage '
+' leftButton 	rightButton		resultTextAndImage '
+
 ;
 
 
@@ -157,7 +174,7 @@ padding: 5px;
 
 .grid-container > div {
 /*background-color: rgb(255, 0, 0); /*ive set the color to transparent*/
-/*text-align: center;*/
+/*text-align: center;*/ 
 font-size: 25px;
 /*font-family: sans-serif;*/
 }
@@ -244,7 +261,7 @@ font-size: 25px;
 				if (term.length < 1) {
 					console.log("Function: searchingNow.Step 7 - We Bailed becauase there no term");
 					document.querySelector("#status").innerHTML = `<p>You havent entered anything!</p>`;
-					document.querySelector("#content").innerHTML = `<p>Invalid Search!</p>`;
+					document.querySelector("#content").innerHTML = `<p class = ' reusltText ' >Invalid Search!</p>`;
 					return;
 				}
 
@@ -326,7 +343,7 @@ font-size: 25px;
 					document.querySelector("#status").innerHTML = "<b>No results found for '" + displayTerm + "'</b>";
 					console.log("Funtion: dataLoaded.Step 8. we Bailed, failed to find data")
 					//document.querySelector("#content").innerHTML = `<img src="images/no-image-found.png" alt="Could Not Find image" width="100" height="100">`
-					document.querySelector("#content").innerHTML = `<p>Invalid Search!</p>`
+					document.querySelector("#content").innerHTML = `<p class = ' reusltText ' >Invalid Search!</p>`
 					return;//bail out
 				}
 			}
@@ -338,7 +355,7 @@ font-size: 25px;
 
 
 			console.log("results.length = " + results.length);
-			let bigString = "<p><i> there are " + obj.pagination.total_count + " total results for '" + displayTerm + "' </i></p> <p><i>You are currently on page " + (pageNum + 1) + " </i></p>";
+			let bigString = "<p class = ' reusltText ' ><i> there are " + obj.pagination.total_count + " total results for '" + displayTerm + "' </i></p> <p><i>You are currently on page " + (pageNum + 1) + " </i></p>";
 
 			// 10 - loop through the array of results
 			for (let i = 0; i < results.length; i++) {
@@ -395,18 +412,21 @@ font-size: 25px;
 
 
 <body>
-<div class="grid-container">
-	<header>
+<div class="grid-container"> <!--start of Grid container-->
+
+	<header class=" mainTitle ">
 		<h2>Giphy Finder Deluxe</h2>
 	</header>
 
-	<div class="widgets  ">
+	<div class=" searchBar  ">
 		Search Here:
 		<input id="searchterm" type="text" size="20" maxlength="20" autofocus value="tetris" />
 	</div>
 
-	<div class="widgets"><!--Useless list-->
-		<!-- no longer gonna use this.just have 50 and seperate by page
+
+<!-- no longer gonna use this.just have 50 and seperate by page
+	<div class="widgets">  
+		
 	Max # results -> 
 	<select id="limit">
 		<option value="5">5</option>
@@ -416,19 +436,19 @@ font-size: 25px;
 		<option value="100">100</option>
 		
 	</select> 
-	-->
-	</div>
+	
+	</div>-->
 
-	<div class="" id="status">Ready to Search!</div>
+	<div class= " searchText " id="status">Ready to Search!</div>
 
-	<div class=" buttons ">
-				<button type="button" id="Larrow" class="red">Previous page<br> <=== </button>
+	<div >
+				<button type="button" id="Larrow" class="red , leftButton ">Previous page<br> <=== </button>
 
-				<button type="button" id="search" class="red">Search For GIFs<br> vvvvv </button>
+				<button type="button" id="search" class="red , searchButton ">Search For GIFs<br> vvvvv </button>
 
-				<button type="button" id="Rarrow" class="red">Next Page <br> ===> </button>
+				<button type="button" id="Rarrow" class="red , rightButton ">Next Page <br> ===> </button>
 
-				<button type="button" id="trend" class="red"> trending <br> ===> </button>
+				<button type="button" id="trend" class="red  , trendingButton "> trending <br> ===> </button>
 
 	</div>
 
@@ -436,13 +456,14 @@ font-size: 25px;
 	<hr>
 
 
-	<h2 class="">Results</h2>
-	<div id="content" class="">
-		<p>No data yet!</p>
+	<h2 class=" resultHeader ">Results</h2>
+	<div id="content"  class=" resultTextAndImage " >
+		<p class = ' reusltText ' >No data yet!</p>
 	</div>
 
 
-</div>
+</div><!--End of Grid container-->
+
 </body>
 
 </html>
