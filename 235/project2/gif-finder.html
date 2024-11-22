@@ -129,10 +129,10 @@
 		.grid-container {
 			display: grid;
 
-			.mainTitle{grid-area: mainTitle}
-			.searchBar { grid-area: searchBar ;}
-			.searchText{grid-area: searchText;}
-			.resultHeader{grid-area: resultHeader;}
+			.mainTitle {grid-area: mainTitle;};
+			.searchBar { grid-area: searchBar ;};
+			.searchText{grid-area: searchText;};
+			/*.resultHeader{grid-area: resultHeader;};/**/
 
 
 			/*.buttons { grid-area: buttons;  };*/
@@ -146,17 +146,17 @@
 			.resultTextAndImage {grid-area: resultTextAndImage;}
 
 grid-template-columns: 1fr 1fr 5fr ;
-grid-template-rows:		1fr 1fr 1fr 1fr 1fr 1fr   ;
+grid-template-rows:		50px 50px 50px 50px 50px 1fr   ;
 
 
 grid-template-areas:
 	
 ' mainTitle		 mainTitle		mainTitle '
-' .		 		. 				resultHeader '
-' searchBar 	searchBar		resultTextAndImage '
-' searchText 	searchText		resultTextAndImage '
-' searchButton 	searchButton	resultTextAndImage '
+' searchBar		searchBar 		searchText '
+'  . 	 		.		 		resultTextAndImage '
+' searchButton 	trendingButton		resultTextAndImage '
 ' leftButton 	rightButton		resultTextAndImage '
+' . 	.						resultTextAndImage '
 
 ;
 
@@ -174,9 +174,16 @@ padding: 5px;
 }
 
 .grid-container > div {
-/*background-color: rgb(255, 0, 0); /*ive set the color to transparent*/
+/*	
+background-color: rgba(128, 108, 108, 0.34);
+border-color: #0A090C;
+border-bottom: #0A090C;
+border-style: solid;
+border-width: 3px;/**/
+
 /*text-align: center;*/ 
 font-size: 25px;
+
 /*font-family: sans-serif;*/
 }
 	</style>
@@ -421,7 +428,7 @@ font-size: 25px;
 
 	<div class=" searchBar  ">
 		Search Here:
-		<input id="searchterm" type="text" size="20" maxlength="20" autofocus value="tetris" />
+		 <input id="searchterm" type="text" size="20" maxlength="20" autofocus value="tetris" />
 	</div>
 
 
@@ -442,7 +449,8 @@ font-size: 25px;
 
 	<div class= " searchText " id="status">Ready to Search!</div>
 
-	<div >
+
+	<!--<div >-->
 				<button type="button" id="Larrow" class="red , leftButton ">Previous page<br> <=== </button>
 
 				<button type="button" id="search" class="red , searchButton ">Search For GIFs<br> vvvvv </button>
@@ -451,13 +459,14 @@ font-size: 25px;
 
 				<button type="button" id="trend" class="red  , trendingButton "> trending <br> ===> </button>
 
-	</div>
+	<!--</div>-->
 
 
-	<hr>
+	<!--<hr>--> 
 
 
-	<h2 class=" resultHeader ">Results</h2>
+	<!--<h2 class=" resultHeader ">Results</h2>-->
+
 	<div id="content"  class=" resultTextAndImage " >
 		<p class = ' reusltText ' >No data yet!</p>
 	</div>
