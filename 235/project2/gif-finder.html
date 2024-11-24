@@ -54,7 +54,7 @@
 
 		.result {
 			position: relative;
-			height: 175px;
+			height: 220px;
 			width: 100px;
 			float: left;
 			/*^^^^somehow, this right here makes em all allign properly./**//**/
@@ -112,6 +112,10 @@
 			border-color: #c80000;
 			background: #c80000;
 			background: linear-gradient(top, #c80000 0%, #8c0000 100%);
+		}
+
+		button.smallText {
+			font-size: 8.5pt;
 		}
 
 		button:hover {
@@ -216,6 +220,8 @@ font-size: 25px;
 			document.querySelector("#Rarrow").onclick = rightArrowButtonClicked
 			document.querySelector("#Larrow").onclick = leftArrowButtonClicked
 			document.querySelector("#trend").onclick = trendingButtonClicked
+
+		
 		};
 
 		let ArrowSearchType = "und";
@@ -251,6 +257,24 @@ font-size: 25px;
 			weHaveSearched = true
 			searchingNow("search?")
 		}
+
+
+		function clipboardButtonClicked (smally = "nothin :/") {
+  // Get the text field
+  console.log("clipboard clicked")
+  let copyText = smally /*document.getElementById("myInput");*/
+
+  // Select the text field
+  /*copyText.select();
+  copyText.setSelectionRange(0, 99999);/**/ // For mobile devices
+
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText);
+
+  // Alert the copied text
+  /*alert("Copied the text: " + copyText.value);*/
+}
+
 
 		// 3
 		function searchingNow(searchType) {//start funtion
@@ -391,7 +415,9 @@ font-size: 25px;
 
 				//11 - get the URL to the GIF 
 				let smallURL = result.images.fixed_width_small.url;
+				
 				if (!smallURL) smallURL = "images/no-image-found.png";
+				let smallURLText = result.url ;
 
 				// 12 - get the URL to the GIPHY page
 				let url = result.url;
@@ -399,9 +425,11 @@ font-size: 25px;
 				//13 Build a <div> to hold each result
 				//ES6 String Templating
 				let line = `<div class = 'result'><img src='${smallURL}' title= '${result.id}' />`;
-				line += `<span><a class = ' resultComponents ' target='_blank' href='${url}'>View on Giphy</a></span></div> `;
-
-				// 14 - another way of doint the same thing above
+				/* line += `<span><a class = ' resultComponents  ' target='_blank' href='${url}'>Copy Giphy URL to clipboard </a></span></div> `; /**/
+				line += `<span><button onclick= 'clipboardButtonClicked("${smallURL}")' type="button" class = ' red , smallText  ' > Copy Url to Clipboard  </button> </span></div> `;
+					
+				
+					// 14 - another way of doint the same thing above
 				// Replaces this:
 				/*
 				var line = "<div class='result'>";
@@ -473,11 +501,13 @@ font-size: 25px;
 	<!--<div >-->
 				<button type="button" id="Larrow" class="red , leftButton ">Previous page<br> <=== </button>
 
-				<button type="button" id="search" class="red , searchButton ">Search For GIFs<br> vvvvv </button>
+				<button type="button" id="search" class="red , searchButton ">Search For GIFs<br>  </button>
 
 				<button type="button" id="Rarrow" class="red , rightButton ">Next Page <br> ===> </button>
 
-				<button type="button" id="trend" class="red  , trendingButton "> trending <br> ===> </button>
+				<button type="button" id="trend" class="red  , trendingButton "> trending GIFs <br>  </button>
+
+				
 
 	<!--</div>-->
 
