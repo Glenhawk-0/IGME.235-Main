@@ -54,7 +54,7 @@
 
 		.result {
 			position: relative;
-			height: 220px;
+			height: 300px;
 			width: 100px;
 			float: left;
 			/*^^^^somehow, this right here makes em all allign properly./**//**/
@@ -99,7 +99,7 @@
 			border-radius: 10px;
 			padding: 10px 18px;
 			box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
-			font-size: 8.5pt;
+			font-size: 9.5pt;
 			font-weight: bold;
 			color: #fff;
 			text-shadow: 0 1px 3px rgba(0, 0, 0, .4);
@@ -168,7 +168,7 @@
 			
 
 grid-template-columns: 1fr 1fr 5fr ;
-grid-template-rows:		50px 50px 80px 50px 50px 50px 1fr 100px   ;
+grid-template-rows:		50px 50px 80px 80px 10px 80px 1fr 100px   ;
 
 
 grid-template-areas:
@@ -424,11 +424,12 @@ font-size: 25px;
 
 				//13 Build a <div> to hold each result
 				//ES6 String Templating
+				
 				let line = `<div class = 'result'><img src='${smallURL}' title= '${result.id}' />`;
-				/* line += `<span><a class = ' resultComponents  ' target='_blank' href='${url}'>Copy Giphy URL to clipboard </a></span></div> `; /**/
 				line += `<span><button onclick= 'clipboardButtonClicked("${smallURL}")' type="button" class = ' red , smallText  ' > Copy Url to Clipboard  </button> </span></div> `;
 					
 				
+					
 					// 14 - another way of doint the same thing above
 				// Replaces this:
 				/*
