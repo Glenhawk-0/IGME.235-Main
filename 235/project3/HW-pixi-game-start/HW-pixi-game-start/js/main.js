@@ -45,9 +45,10 @@ let stage;
 
 // game variables
 let startScene;
-let gameScene, ship, scoreLabel, lifeLabel, shootSound, hitSound, fireballSound;
+let gameScene, ship, paddle, scoreLabel, lifeLabel, shootSound, hitSound, fireballSound;
 let gameOverScene;
 
+let bricks =[];
 let circles = [];
 let bullets = [];
 let aliens = [];
@@ -260,7 +261,7 @@ function gameLoop(){
 	let w2 = ship.width/2;
 	let h2 = ship.height/2;
 	ship.x = clamp(newX, 0+w2,sceneWidth-w2);
-	ship.y = clamp(newY,0+h2,sceneHeight-h2);
+	//ship.y = clamp(newY,0+h2,sceneHeight-h2);
 	
 	// #3 - Move Circles
 	for (let c of circles){
@@ -297,12 +298,16 @@ function gameLoop(){
 		if (b.y < -10) b.isAlive = false;
 	}
 
+	///protype .. we will replace this with a paddle.
 		// #5B - circles & ship
 		if (c.isAlive && rectsIntersect(c,ship)){
-			hitSound.play();
-			gameScene.removeChild(c);
-			c.isAlive = false;
-			decreaseLifeBy(20);
+			//hitSound.play();
+			
+			//gameScene.removeChild(c);
+			//c.reflectY();
+			c.makeYGoUp();
+			//c.isAlive = false;
+			//decreaseLifeBy(20);
 		}
 	}
 	

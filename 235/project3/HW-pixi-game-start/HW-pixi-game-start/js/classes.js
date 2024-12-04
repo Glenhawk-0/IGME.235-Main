@@ -35,6 +35,13 @@ class Circle extends PIXI.Graphics{
     reflectY(){
         this.fwd.y *= -1;
     }
+
+    makeYGoUp(){
+        
+        if(this.fwd.y > 0){
+        this.fwd.y *= -1;}
+
+    }
 }
 
 class Bullet extends PIXI.Graphics{
