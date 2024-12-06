@@ -80,8 +80,14 @@ function setup() {
 	createLabelsAndButtons();
 
 	// #5 - Create ship
-	ship = new Ship();
+	ship = new Paddle();
 	gameScene.addChild(ship);
+
+
+	//#5+ create paddle
+	/*paddle = new Paddle();
+	gameScene.addChild(paddle)*/
+
 	// #6 - Load Sounds
 		shootSound  = new Howl({
 			src:['sounds/shoot.wav']
@@ -118,7 +124,7 @@ function createLabelsAndButtons() {
 
 	// 1 - set up `startScene`
 	// 1A - make top start label
-	let startLabel1 = new PIXI.Text("Circle Blast!");
+	let startLabel1 = new PIXI.Text("BreakOut!");
 	startLabel1.style = new PIXI.TextStyle({
 		fill: 0xFF0000,
 		fontSize: 96,
@@ -131,7 +137,7 @@ function createLabelsAndButtons() {
 	startScene.addChild(startLabel1);
 
 	// 1B - make middle start label
-	let startLabel2 = new PIXI.Text("R U worthy..?");
+	let startLabel2 = new PIXI.Text("Will I pass?... i hope");
 	startLabel2.style = new PIXI.TextStyle({
 		fill: 0xFFFFFF,
 		fontSize: 32,
@@ -145,7 +151,7 @@ function createLabelsAndButtons() {
 	startScene.addChild(startLabel2);
 
 	// 1C - make start game button     
-	let startButton = new PIXI.Text("Enter, ... if you dare!");
+	let startButton = new PIXI.Text("Start the game NERD");
 	startButton.style = buttonStyle;
 	startButton.x = 80;
 	startButton.y = sceneHeight - 100;
@@ -254,13 +260,13 @@ function gameLoop(){
 	let amt = 6 * dt; // at 60 FPS would move about 10% of distance per update
 
 	// lerp (linear interpolate) the x & y values with lerp()
-	let newX = lerp(ship.x, mousePosition.x, amt);
+	let newX = lerp(ship.x, mousePosition.x - 50, amt);
 	let newY = lerp(ship.y, mousePosition.y, amt);
 
 	// keep the ship on the screen with clamp()
 	let w2 = ship.width/2;
 	let h2 = ship.height/2;
-	ship.x = clamp(newX, 0+w2,sceneWidth-w2);
+	ship.x = clamp(newX, 0,sceneWidth-(w2*2));
 	//ship.y = clamp(newY,0+h2,sceneHeight-h2);
 	
 	// #3 - Move Circles
@@ -377,7 +383,8 @@ function fireBullet(e){
 	//console.log(`${mouseX},${mouseY}`);
 	if (paused) return;
 	let displace = 15 
-	let b = [new Bullet(0xFFFFFF, ship.x-displace , ship.y) , new Bullet(0xFFFFFF, ship.x , ship.y), new Bullet(0xFFFFFF, ship.x+displace , ship.y) ]; //new Bullet(0xFFFFFF, ship.x , ship.y);
+	let centering = 50
+	let b = [new Bullet(0xFFFFFF, ship.x + centering -displace , ship.y) , new Bullet(0xFFFFFF, ship.x + centering , ship.y), new Bullet(0xFFFFFF, ship.x + centering +displace , ship.y) ]; //new Bullet(0xFFFFFF, ship.x , ship.y);
 	
 	if (score < 9) {
 		bullets.push(b[1])
