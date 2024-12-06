@@ -79,14 +79,14 @@ function setup() {
 	// #4 - Create labels for all 3 scenes
 	createLabelsAndButtons();
 
-	// #5 - Create ship
-	ship = new Paddle();
-	gameScene.addChild(ship);
+	/* #5 - Create ship
+	ship = new Ship();
+	gameScene.addChild(ship);*/
 
 
 	//#5+ create paddle
-	/*paddle = new Paddle();
-	gameScene.addChild(paddle)*/
+	paddle = new Paddle();
+	gameScene.addChild(paddle)
 
 	// #6 - Load Sounds
 		shootSound  = new Howl({
@@ -229,8 +229,8 @@ function startGame() {
 	life  = 100;
 	increaseScoreBy(0);
 	decreaseLifeBy(0);
-	ship.x = 300;
-	ship.y = 550;
+	paddle.x = 300;
+	paddle.y = 550;
 	loadLevel();
 }
 
@@ -253,21 +253,21 @@ function gameLoop(){
 	let dt = 1/app.ticker.FPS;
 	if (dt > 1/12) dt=1/12;
 	
-	// #2 - Move Ship
+	// #2 - Move paddle
 	let mousePosition = app.renderer.plugins.interaction.mouse.global;
-	//ship.position = mousePosition;
+	//paddle.position = mousePosition;
 
 	let amt = 6 * dt; // at 60 FPS would move about 10% of distance per update
 
 	// lerp (linear interpolate) the x & y values with lerp()
-	let newX = lerp(ship.x, mousePosition.x - 50, amt);
-	let newY = lerp(ship.y, mousePosition.y, amt);
+	let newX = lerp(paddle.x, mousePosition.x - 50, amt);
+	let newY = lerp(paddle.y, mousePosition.y, amt);
 
-	// keep the ship on the screen with clamp()
-	let w2 = ship.width/2;
-	let h2 = ship.height/2;
-	ship.x = clamp(newX, 0,sceneWidth-(w2*2));
-	//ship.y = clamp(newY,0+h2,sceneHeight-h2);
+	// keep the paddle on the screen with clamp()
+	let w2 = paddle.width/2;
+	let h2 = paddle.height/2;
+	paddle.x = clamp(newX, 0,sceneWidth-(w2*2));
+	//paddle.y = clamp(newY,0+h2,sceneHeight-h2);
 	
 	// #3 - Move Circles
 	for (let c of circles){
@@ -305,8 +305,8 @@ function gameLoop(){
 	}
 
 	///protype .. we will replace this with a paddle.
-		// #5B - circles & ship
-		if (c.isAlive && rectsIntersect(c,ship)){
+		// #5B - circles & paddle
+		if (c.isAlive && rectsIntersect(c,paddle)){
 			//hitSound.play();
 			
 			//gameScene.removeChild(c);
@@ -384,7 +384,7 @@ function fireBullet(e){
 	if (paused) return;
 	let displace = 15 
 	let centering = 50
-	let b = [new Bullet(0xFFFFFF, ship.x + centering -displace , ship.y) , new Bullet(0xFFFFFF, ship.x + centering , ship.y), new Bullet(0xFFFFFF, ship.x + centering +displace , ship.y) ]; //new Bullet(0xFFFFFF, ship.x , ship.y);
+	let b = [new Bullet(0xFFFFFF, paddle.x + centering -displace , paddle.y) , new Bullet(0xFFFFFF, paddle.x + centering , paddle.y), new Bullet(0xFFFFFF, paddle.x + centering +displace , paddle.y) ]; //new Bullet(0xFFFFFF, paddle.x , paddle.y);
 	
 	if (score < 9) {
 		bullets.push(b[1])
