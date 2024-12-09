@@ -45,7 +45,7 @@ let stage;
 
 // game variables
 let startScene;
-let gameScene, ship, paddle, scoreLabel, lifeLabel, shootSound, hitSound, fireballSound;
+let gameScene, ship, paddle, scoreLabel, levelLabel, lifeLabel, shootSound, hitSound, fireballSound;
 let gameOverScene;
 
 let bricks =[];
@@ -56,7 +56,7 @@ let explosions = [];
 let explosionTextures;
 let score = 0;
 
-let life = 100;
+let life = 5;
 let levelNum = 1;
 let paused = true;
 
@@ -180,7 +180,15 @@ function createLabelsAndButtons() {
 	gameScene.addChild(scoreLabel);
 	increaseScoreBy(0);
 
-	// 2B - make life label
+		//2B - make score label
+		levelLabel = new PIXI.Text();
+		levelLabel.style = textStyle;
+		levelLabel.x = sceneWidth - 100;
+		levelLabel.y = 5;
+		gameScene.addChild(levelLabel);
+		increaseLevelBy(0);
+
+	// 2C - make life label
 	lifeLabel = new PIXI.Text();
 	lifeLabel.style = textStyle;
 	lifeLabel.x = 5;
@@ -226,7 +234,7 @@ function startGame() {
 	levelNum = 1;
 	
 	score = 0;
-	life  = 100;
+	life  = 5;
 	increaseScoreBy(0);
 	decreaseLifeBy(0);
 	paddle.x = 300;
@@ -239,10 +247,16 @@ function increaseScoreBy(value) {
 	scoreLabel.text = `Score: ${score}`;
 }
 
+function increaseLevelBy(value) {//tech
+	levelNum += value;
+	//levelNum ++
+	levelLabel.text = `Level: ${levelNum}`;
+}
+
 function decreaseLifeBy(value) {
 	life -= value;
 	life = parseInt(life);
-	lifeLabel.text = `Life		${life}%`;
+	lifeLabel.text = `Lives		${life}`;
 }
 
 
@@ -313,7 +327,7 @@ function gameLoop(){
 			//c.reflectY();
 			c.makeYGoUp();
 			//c.isAlive = false;
-			//decreaseLifeBy(20);
+			//decreaseLifeBy(1);
 		}
 	}
 	
@@ -337,13 +351,15 @@ function gameLoop(){
 		return; // return here so we skip #8 below
 	}
 	
-	// #8 - Load next level
-	if (circles.length == 0){
-		levelNum ++;
+	// #8 - Load next level, 
+	if (circles.length == 0){  // Change this to bricks
+		//levelNum ++;
+		increaseLevelBy(1)
 		loadLevel();
+		
 	}
 }
-
+/* old function
 function createCircles(numCircles){
 	for(let i=0; i<numCircles; i++){
 		let c = new Circle(10, 0xFFFF00);
@@ -353,6 +369,17 @@ function createCircles(numCircles){
 		circles.push(c);
 		gameScene.addChild(c);
 	}
+}*/
+//Keep it simple. Speed increases with each level
+function createCircles(speedOfCircle){
+	
+		let c = new Circle(7, speedOfCircle);
+		c.x = Math.random() * (sceneWidth - 50) + 25;
+		//c.y = Math.random() * (sceneHeight - 100) + 25; og
+		c.y = Math.random() + (300) + 25; //temporary
+		circles.push(c);
+		gameScene.addChild(c);
+	
 }
 
 function createBricks(numBricks){
@@ -379,8 +406,8 @@ function createBricks(numBricks){
 }
 
 function loadLevel(){
-	createCircles(levelNum * 5);
-	createBricks(25);
+	createCircles((levelNum + 3) * 2 );
+	createBricks(50);
 	paused = false;
 }
 

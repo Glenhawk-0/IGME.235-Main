@@ -15,7 +15,7 @@ class Paddle extends PIXI.Graphics{
         super();
         
         this.beginFill(color);
-        this.drawRect(0, 0, 100, 10);
+        this.drawRect(0, 0, 100, 17);
         this.endFill();
         this.x = x;
         this.y = y;
@@ -28,10 +28,10 @@ class Paddle extends PIXI.Graphics{
 }
 
 class Circle extends PIXI.Graphics{
-    constructor(radius, color = 0xFF0000, x=0, y=0){
+    constructor(radius, speedModify = 1 , x=0, y=0){
         super();
         
-        this.beginFill(color);
+        this.beginFill(0xFFFFFF);
         this.drawCircle(0,0,radius);
        
         this.endFill();
@@ -40,7 +40,7 @@ class Circle extends PIXI.Graphics{
         this.radius = radius;
         //varibles
         this.fwd = getRandomUnitVector();
-        this.speed = 50;
+        this.speed = 50 * speedModify;
         this.isAlive = true;
     }
 
@@ -72,7 +72,17 @@ class Brick extends PIXI.Graphics{
     constructor( brickNumber = 0 , x=0, y=0 ){
         super();
         let color;
-        if (brickNumber >= 0 && brickNumber <= 9){  color = 0xFF0000 } else {color =0xFFFF00 }
+        if (brickNumber >= 0 && brickNumber <= 9){
+              color = 0xFF0000 //red
+            } else if ( brickNumber <= 19){
+                color = 0xFF5500 //orange
+              } else if ( brickNumber <= 29){
+                color = 0xFFFF00 //yellow
+              } else if ( brickNumber <= 39){
+                color = 0x15FF00 //green
+              } else if ( brickNumber <= 49){
+                color = 0x0000FF // blue
+              } else {color =0xFFFFFF } // white, fail safe
 
         this.beginFill(color);
         this.drawRect(0, 0, sceneWidth / 10 , 20);
