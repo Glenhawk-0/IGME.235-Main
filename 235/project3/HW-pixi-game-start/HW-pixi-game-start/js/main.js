@@ -348,14 +348,39 @@ function createCircles(numCircles){
 	for(let i=0; i<numCircles; i++){
 		let c = new Circle(10, 0xFFFF00);
 		c.x = Math.random() * (sceneWidth - 50) + 25;
-		c.y = Math.random() * (sceneHeight - 400) + 25;
+		//c.y = Math.random() * (sceneHeight - 100) + 25; og
+		c.y = Math.random() + (300) + 25; //temporary
 		circles.push(c);
 		gameScene.addChild(c);
 	}
 }
 
+function createBricks(numBricks){
+	let layer = 0
+	for(let i=0; i<numBricks; i++){
+		let divider = i % 10;
+		if (divider == 0 ){layer += 1}
+		let iterateNum = i;
+		while(iterateNum >= 10){
+			iterateNum = iterateNum - 10
+			
+		}
+		
+		let b = new Brick(i);
+		b.x = 0 + (iterateNum * (sceneWidth / 10));
+		//c.y = Math.random() * (sceneHeight - 100) + 25; og
+	
+		b.y = 40 + (20 * layer);
+		//console.log("i: " + i + " layer: "+ layer + " b.y: "+ b.y )
+
+		bricks.push(b);
+		gameScene.addChild(b);
+	}
+}
+
 function loadLevel(){
 	createCircles(levelNum * 5);
+	createBricks(25);
 	paused = false;
 }
 
