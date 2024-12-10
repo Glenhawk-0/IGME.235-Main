@@ -45,7 +45,7 @@ let stage;
 
 // game variables
 let startScene;
-let gameScene, ship, paddle, scoreLabel, levelLabel, lifeLabel, ammoLabel, shootSound, hitSound, fireballSound;
+let gameScene, ship, paddle, scoreLabel, levelLabel, lifeLabel, ammoLabel, shootSound, hitSound, fireballSound, emptySound;
 let gameOverScene;
 
 let bricks =[];
@@ -80,11 +80,6 @@ function setup() {
 	// #4 - Create labels for all 3 scenes
 	createLabelsAndButtons();
 
-	/* #5 - Create ship
-	ship = new Ship();
-	gameScene.addChild(ship);*/
-
-
 	//#5+ create paddle
 	paddle = new Paddle();
 	gameScene.addChild(paddle)
@@ -101,6 +96,11 @@ function setup() {
 		fireballSound = new Howl ({
 			src: ['sounds/fireball.mp3']
 		});
+
+		emptySound = new Howl ({
+			src: ['sounds/empty.wav']
+		});
+
 	// #7 - Load sprite sheet
 	explosionTextures = loadSpriteSheet();
 
@@ -334,26 +334,7 @@ function gameLoop(){
 	}
 	
 	// #5 - Check for Collisions
-
-	// 
 	for (let c of circles){
-		
-		// #5A - circles & bullets
-		/*
-		for(let b of bullets){
-		if (rectsIntersect(c,b)){
-			fireballSound.play();
-			createExplosion(c.x,c.y,64,64); 
-			gameScene.removeChild(c);
-			c.isAlive = false;
-			gameScene.removeChild(b);
-			b.isAlive = false;
-			increaseScoreBy(1);
-		}
-		if (b.y < -10) b.isAlive = false;
-	} // no longer using 
-	*/ 
-
 		// #5AA - circles and bricks
 		for(let b of bricks){
 			if (rectsIntersect(c,b)){
@@ -364,13 +345,13 @@ function gameLoop(){
 				gameScene.removeChild(b);
 				b.isAlive = false;
 				increaseScoreBy(1);
+
+				if (    (((c.x + c.radius) >= (b.x)) && ((c.x - c.radius) < ( b.x  ))) || (((c.x - c.radius) <= (b.x + 60)) && ((c.x + c.radius) > ( b.x + 60 )))   ) {c.reflectX();}
+				
+				if (    (((c.y + c.radius) >= (b.y)) && ((c.y - c.radius) < ( b.y  ))) || (((c.y - c.radius) <= (b.y + 20)) && ((c.y + c.radius) > ( b.y + 20 )))   ) {c.reflectY();}
 			}
 			//if (b.y < -10) b.isAlive = false;
 		} 
-
-		// #5AB - circles and bottom 
-
-
 		// #5ABC bullets and bricks 
 		for(let bu of bullets){
 			for(let br of bricks){
@@ -385,29 +366,10 @@ function gameLoop(){
 			}
 			if (bu.y < -10) bu.isAlive = false;
 		} }
-	///protype .. we will replace this with a paddle.
 		// #5B - circles & paddle
 		if (c.isAlive && rectsIntersect(c,paddle)){
-			//hitSound.play();
-			
-			//gameScene.removeChild(c);
-			//c.reflectY();
 			c.makeYGoUp();
-			//c.isAlive = false;
-			//decreaseLifeBy(1);
 		}
-
-		//#5C - circles and bottom
-		/*
-		if (c.isAlive && c.y >= sceneHeight-c.radius  /*rectsIntersect(c,paddle)*//*){
-			hitSound.play();
-			
-			//gameScene.removeChild(c);
-			//c.reflectY();
-			//c.makeYGoUp();
-			//c.isAlive = false;
-			decreaseLifeBy(1);
-		}*/
 	}
 	
 	// all done checking for collisions
@@ -426,14 +388,6 @@ function gameLoop(){
 
 	// get rid of dead bricks
 	bricks = bricks.filter(b=>b.isAlive);
-	
-
-	/*if (circles.length == 0){  
-		//levelNum ++;
-		//increaseLevelBy(1)
-		loadLevel();
-		
-	}*/
 
 	// #7 - Is game over?
 	if (life <= 0){
@@ -457,23 +411,10 @@ function gameLoop(){
 
 }
 
-
-
-/* old function
-function createCircles(numCircles){
-	for(let i=0; i<numCircles; i++){
-		let c = new Circle(10, 0xFFFF00);
-		c.x = Math.random() * (sceneWidth - 50) + 25;
-		//c.y = Math.random() * (sceneHeight - 100) + 25; og
-		c.y = Math.random() + (300) + 25; //temporary
-		circles.push(c);
-		gameScene.addChild(c);
-	}
-}*/
 //Keep it simple. Speed increases with each level
 function createCircles(speedOfCircle){
 	
-		let c = new Circle(7, speedOfCircle);
+		let c = new Circle(5, speedOfCircle);
 		c.x = Math.random() * (sceneWidth - 50) + 25;
 		//c.y = Math.random() * (sceneHeight - 100) + 25; og
 		c.y = Math.random() + (300) + 25; //temporary
@@ -533,10 +474,7 @@ function end() {
 }
 
 function fireBullet(e , amount = ammo){
-	//let rect = app.view.getBoundingClientRect();
-	//let mouseX = e.clientX - rect.x;
-	//let mouseY = e.clientY - rect.y;
-	//console.log(`${mouseX},${mouseY}`);
+
 
 	if (paused) return;
 	if(amount > 0){
@@ -561,7 +499,7 @@ function fireBullet(e , amount = ammo){
 }
 	shootSound.play();
 	}else {
-	shootSound.play(); // instead play a "empty sound"
+	emptySound.play(); 
 	}
 }
 
