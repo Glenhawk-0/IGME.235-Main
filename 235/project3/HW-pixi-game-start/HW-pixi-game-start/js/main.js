@@ -45,7 +45,7 @@ let stage;
 
 // game variables
 let startScene;
-let gameScene, ship, paddle, scoreLabel, levelLabel, lifeLabel, shootSound, hitSound, fireballSound;
+let gameScene, ship, paddle, scoreLabel, levelLabel, lifeLabel, ammoLabel, shootSound, hitSound, fireballSound;
 let gameOverScene;
 
 let bricks =[];
@@ -55,6 +55,7 @@ let aliens = [];
 let explosions = [];
 let explosionTextures;
 let score = 0;
+let ammo = 30;
 
 let life = 5;
 let levelNum = 1;
@@ -180,7 +181,7 @@ function createLabelsAndButtons() {
 	gameScene.addChild(scoreLabel);
 	increaseScoreBy(0);
 
-		//2B - make score label
+		//2B - make level label
 		levelLabel = new PIXI.Text();
 		levelLabel.style = textStyle;
 		levelLabel.x = sceneWidth - 100;
@@ -195,6 +196,14 @@ function createLabelsAndButtons() {
 	lifeLabel.y = 26;
 	gameScene.addChild(lifeLabel);
 	decreaseLifeBy(0);
+
+		//2D - make Ammo label
+		ammoLabel = new PIXI.Text();
+		ammoLabel.style = textStyle;
+		ammoLabel.x = sceneWidth - 100;
+		ammoLabel.y = 26;
+		gameScene.addChild(ammoLabel);
+		decreaseAmmoBy(0);
 
 	
 	// 3 - set up `gameOverScene`
@@ -235,8 +244,10 @@ function startGame() {
 	
 	score = 0;
 	life  = 5;
+	ammo = 1;
 	increaseScoreBy(0);
 	decreaseLifeBy(0);
+	decreaseAmmoBy(0)
 	paddle.x = 300;
 	paddle.y = 550;
 	loadLevel();
@@ -257,6 +268,12 @@ function decreaseLifeBy(value) {
 	life -= value;
 	life = parseInt(life);
 	lifeLabel.text = `Lives		${life}`;
+}
+
+function decreaseAmmoBy(value) {
+	ammo -= value;
+	ammo = parseInt(ammo);
+	ammoLabel.text = `Ammo		${ammo}`;
 }
 
 
@@ -290,10 +307,24 @@ function gameLoop(){
 			c.reflectX();
 			c.move(dt);
 		}
+		
+		//circle hitting the bottom , lose health. 
+		if (c.isAlive && c.y >= sceneHeight-c.radius ){ 
+			hitSound.play();
+			
+			//gameScene.removeChild(c);
+			//c.reflectY();
+			c.makeYGoUp();
+			//c.isAlive = false;
+			decreaseLifeBy(1);
+			c.y = (sceneHeight/2) + 150 ;
+			
+		}
 
-		if (c.y <= c.radius || c.y >= sceneHeight-c.radius){
+		if (c.y <= c.radius /*|| c.y >= sceneHeight-c.radius*/){
 			c.reflectY();
 			c.move(dt);
+			
 		}
 	}
 	
@@ -303,9 +334,12 @@ function gameLoop(){
 	}
 	
 	// #5 - Check for Collisions
+
+	// 
 	for (let c of circles){
+		
+		// #5A - circles & bullets/*
 		for(let b of bullets){
-		// #5A - circles & bullets
 		if (rectsIntersect(c,b)){
 			fireballSound.play();
 			createExplosion(c.x,c.y,64,64); 
@@ -316,8 +350,39 @@ function gameLoop(){
 			increaseScoreBy(1);
 		}
 		if (b.y < -10) b.isAlive = false;
-	}
+	} // no longer using /**/ 
 
+		// #5AA - circles and bricks
+		for(let b of bricks){
+			if (rectsIntersect(c,b)){
+				fireballSound.play();
+				createExplosion(c.x,c.y,64,64); 
+				//gameScene.removeChild(c);
+				//c.isAlive = false;
+				gameScene.removeChild(b);
+				b.isAlive = false;
+				increaseScoreBy(1);
+			}
+			//if (b.y < -10) b.isAlive = false;
+		} 
+
+		// #5AB - circles and bottom 
+
+
+		// #5ABC bullets and bricks 
+		for(let bu of bullets){
+			for(let br of bricks){
+			if (rectsIntersect(br,bu)){
+				fireballSound.play();
+				createExplosion(br.x,br.y,64,64); 
+				gameScene.removeChild(br);
+				br.isAlive = false;
+				gameScene.removeChild(bu);
+				bu.isAlive = false;
+				increaseScoreBy(1);
+			}
+			if (bu.y < -10) bu.isAlive = false;
+		} }
 	///protype .. we will replace this with a paddle.
 		// #5B - circles & paddle
 		if (c.isAlive && rectsIntersect(c,paddle)){
@@ -329,9 +394,22 @@ function gameLoop(){
 			//c.isAlive = false;
 			//decreaseLifeBy(1);
 		}
+
+		//#5C - circles and bottom
+		/*
+		if (c.isAlive && c.y >= sceneHeight-c.radius  /*rectsIntersect(c,paddle)*//*){
+			hitSound.play();
+			
+			//gameScene.removeChild(c);
+			//c.reflectY();
+			//c.makeYGoUp();
+			//c.isAlive = false;
+			decreaseLifeBy(1);
+		}*/
 	}
 	
 	// all done checking for collisions
+
 
 	// #6 - Now do some clean up
 	
@@ -343,7 +421,18 @@ function gameLoop(){
 
 	// get rid of explosions
 	explosions = explosions.filter(e=>e.playing);
+
+	// get rid of dead bricks
+	bricks = bricks.filter(b=>b.isAlive);
 	
+
+	/*if (circles.length == 0){  
+		//levelNum ++;
+		//increaseLevelBy(1)
+		loadLevel();
+		
+	}*/
+
 	// #7 - Is game over?
 	if (life <= 0){
 		
@@ -352,13 +441,22 @@ function gameLoop(){
 	}
 	
 	// #8 - Load next level, 
-	if (circles.length == 0){  // Change this to bricks
+	if (bricks.length == 0){  
 		//levelNum ++;
+		for (let c of circles){
+		gameScene.removeChild(c);
+		c.isAlive = false;
+		}
 		increaseLevelBy(1)
 		loadLevel();
 		
 	}
+
+
 }
+
+
+
 /* old function
 function createCircles(numCircles){
 	for(let i=0; i<numCircles; i++){
@@ -408,6 +506,8 @@ function createBricks(numBricks){
 function loadLevel(){
 	createCircles((levelNum + 3) * 2 );
 	createBricks(50);
+	ammo += 5
+	decreaseAmmoBy(0)
 	paused = false;
 }
 
@@ -428,17 +528,21 @@ function end() {
 	gameScene.visible = false;
 }
 
-function fireBullet(e){
+function fireBullet(e , amount = ammo){
 	//let rect = app.view.getBoundingClientRect();
 	//let mouseX = e.clientX - rect.x;
 	//let mouseY = e.clientY - rect.y;
 	//console.log(`${mouseX},${mouseY}`);
+
 	if (paused) return;
+	if(amount > 0){
+		decreaseAmmoBy(1);
+		
 	let displace = 15 
 	let centering = 50
 	let b = [new Bullet(0xFFFFFF, paddle.x + centering -displace , paddle.y) , new Bullet(0xFFFFFF, paddle.x + centering , paddle.y), new Bullet(0xFFFFFF, paddle.x + centering +displace , paddle.y) ]; //new Bullet(0xFFFFFF, paddle.x , paddle.y);
 	
-	if (score < 9) {
+	if (levelNum < 3) {
 		bullets.push(b[1])
 		bullets.push(b[1])
 		gameScene.addChild(b[1]);
@@ -452,6 +556,9 @@ function fireBullet(e){
 
 }
 	shootSound.play();
+	}else {
+	shootSound.play(); // instead play a "empty sound"
+	}
 }
 
 function loadSpriteSheet(){

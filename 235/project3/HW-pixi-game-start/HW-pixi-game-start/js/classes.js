@@ -38,6 +38,7 @@ class Circle extends PIXI.Graphics{
         this.x = x;
         this.y = y;
         this.radius = radius;
+        this.bottomEdge = y + radius;
         //varibles
         this.fwd = getRandomUnitVector();
         this.speed = 50 * speedModify;
