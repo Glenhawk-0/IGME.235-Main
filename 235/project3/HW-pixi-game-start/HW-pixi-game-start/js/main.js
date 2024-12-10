@@ -312,12 +312,12 @@ function gameLoop(){
 		if (c.isAlive && c.y >= sceneHeight-c.radius ){ 
 			hitSound.play();
 			
-			//gameScene.removeChild(c);
-			//c.reflectY();
+;
 			c.makeYGoUp();
-			//c.isAlive = false;
+			c.move(dt);
 			decreaseLifeBy(1);
-			c.y = (sceneHeight/2) + 150 ;
+			c.y = (sceneHeight/2) + 250 ;
+			// random x location
 			
 		}
 
@@ -338,7 +338,8 @@ function gameLoop(){
 	// 
 	for (let c of circles){
 		
-		// #5A - circles & bullets/*
+		// #5A - circles & bullets
+		/*
 		for(let b of bullets){
 		if (rectsIntersect(c,b)){
 			fireballSound.play();
@@ -350,13 +351,14 @@ function gameLoop(){
 			increaseScoreBy(1);
 		}
 		if (b.y < -10) b.isAlive = false;
-	} // no longer using /**/ 
+	} // no longer using 
+	*/ 
 
 		// #5AA - circles and bricks
 		for(let b of bricks){
 			if (rectsIntersect(c,b)){
 				fireballSound.play();
-				createExplosion(c.x,c.y,64,64); 
+				createExplosion(c.x,c.y,64,64)/**/; //createExplosion(b.x + 30 ,b.y + 10 ,64,64)
 				//gameScene.removeChild(c);
 				//c.isAlive = false;
 				gameScene.removeChild(b);
@@ -374,7 +376,7 @@ function gameLoop(){
 			for(let br of bricks){
 			if (rectsIntersect(br,bu)){
 				fireballSound.play();
-				createExplosion(br.x,br.y,64,64); 
+				createExplosion(br.x + 30 ,br.y + 10 ,64,64); 
 				gameScene.removeChild(br);
 				br.isAlive = false;
 				gameScene.removeChild(bu);
@@ -475,6 +477,8 @@ function createCircles(speedOfCircle){
 		c.x = Math.random() * (sceneWidth - 50) + 25;
 		//c.y = Math.random() * (sceneHeight - 100) + 25; og
 		c.y = Math.random() + (300) + 25; //temporary
+		//c.x = 300
+		//c.y = 550
 		circles.push(c);
 		gameScene.addChild(c);
 	

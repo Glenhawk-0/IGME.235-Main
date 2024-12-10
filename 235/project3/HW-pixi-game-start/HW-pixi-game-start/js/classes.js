@@ -70,7 +70,7 @@ class Circle extends PIXI.Graphics{
 }
 
 class Brick extends PIXI.Graphics{
-    constructor( brickNumber = 0 , x=0, y=0 ){
+    constructor( brickNumber = 0 , x=0, y=0, middleOfBrick){
         super();
         let color;
         if (brickNumber >= 0 && brickNumber <= 9){
@@ -90,6 +90,8 @@ class Brick extends PIXI.Graphics{
         this.endFill();
         this.x = x;
         this.y = y;
+        middleOfBrick = x + (sceneWidth / 10); 
+        this.middleOfBrick = middleOfBrick ; 
         //this.radius = radius;
         //varibles
         this.fwd = getRandomUnitVector();
